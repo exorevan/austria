@@ -54,18 +54,20 @@ if (themeToggleBtn) {
 }
 
 // Chart configurations (theme-aware)
-Chart.defaults.font.family = "'Inter', sans-serif";
-function getChartTheme() {
+Chart.defaults.font.family = "'Inter', sans-serif"; // Set default font for charts
+
+function getThemeColors() {
     const isDark = document.documentElement.classList.contains('dark');
     return {
-        text: isDark ? '#e2e8f0' : '#374151', // slate-200 vs gray-700
-        grid: isDark ? '#334155' : '#e5e7eb', // slate-700 vs gray-200
+        chartText: isDark ? '#e2e8f0' : '#374151', // slate-200 vs gray-700
+        chartGrid: isDark ? '#334155' : '#e5e7eb', // slate-700 vs gray-200
     };
 }
+
 function applyChartDefaults() {
-    const { text, grid } = getChartTheme();
-    Chart.defaults.color = text;
-    Chart.defaults.borderColor = grid;
+    const { chartText, chartGrid } = getThemeColors();
+    Chart.defaults.color = chartText;
+    Chart.defaults.borderColor = chartGrid;
 }
 applyChartDefaults();
 window._charts = window._charts || [];
@@ -162,127 +164,147 @@ lazyInitChart('obesityChart', () => ({
 // Flipping cards logic
 // Removed for parks slider replacement
 
-// Großglockner slider (auto-rotate every 3s)
-const glocknerSlider = document.querySelector('.glockner-slider');
-if (glocknerSlider) {
-    const slides = glocknerSlider.querySelectorAll('.slide');
-    const dots = glocknerSlider.querySelectorAll('.dot');
-    let currentIndex = 0;
+/**
+ * Sets up a manual slider with navigation buttons and dots.
+ * @param {string} rootElementSelector - CSS selector for the slider's root element.
+ * @param {string} buttonPrefix - Prefix for navigation button classes (e.g., 'parks' for '.parks-prev').
+ * @param {string} dotAriaLabelPrefix - Prefix for the aria-label of the dots (e.g., 'Перейти к слайду').
+ */
+function setupManualSlider(rootElementSelector, buttonPrefix, dotAriaLabelPrefix) {
+    const slider = document.querySelector(rootElementSelector);
+    if (!slider) return;
 
-    function showSlide(index) {
-        slides.forEach((img, i) => {
-            img.style.opacity = i === index ? '1' : '0';
-        });
-        dots.forEach((dot, i) => {
-            dot.style.backgroundColor = i === index ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)';
-        });
-    }
+    const wrapper = slider.querySelector('.slides-wrapper');
+    const slides = slider.querySelectorAll('.slide');
+    const prevBtn = slider.querySelector(`.${buttonPrefix}-prev`);
+    const nextBtn = slider.querySelector(`.${buttonPrefix}-next`);
+    const dotsContainer = slider.querySelector(`.${buttonPrefix}-dots`);
 
-    showSlide(currentIndex);
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-    }, 3000);
-}
-
-// Parks manual slider (6 slides, text left / image right)
-const parksSlider = document.querySelector('.parks-slider');
-if (parksSlider) {
-    const wrapper = parksSlider.querySelector('.slides-wrapper');
-    const slides = parksSlider.querySelectorAll('.slide');
-    const prevBtn = parksSlider.querySelector('.parks-prev');
-    const nextBtn = parksSlider.querySelector('.parks-next');
-    const dotsContainer = parksSlider.querySelector('.parks-dots');
-
+    // Current slide index
     let current = 0;
 
-    // Build dots
+    // Create and append dots
     const dots = Array.from({ length: slides.length }, (_, i) => {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'dot';
-        dot.setAttribute('aria-label', `Перейти к слайду ${i + 1}`);
-        dot.addEventListener('click', () => {
-            goTo(i);
-        });
-        dotsContainer.appendChild(dot);
-        return dot;
-    });
-
-    function update() {
-        const offset = -current * 100;
-        wrapper.style.transform = `translateX(${offset}%)`;
-        dots.forEach((d, i) => d.classList.toggle('active', i === current));
-        prevBtn.disabled = current === 0;
-        nextBtn.disabled = current === slides.length - 1;
-        prevBtn.classList.toggle('opacity-50', prevBtn.disabled);
-        nextBtn.classList.toggle('opacity-50', nextBtn.disabled);
-    }
-
-    function goTo(index) {
-        if (index < 0 || index >= slides.length) return;
-        current = index;
-        update();
-    }
-
-    prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
-
-    // Keyboard accessibility
-    parksSlider.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') goTo(current - 1);
-        if (e.key === 'ArrowRight') goTo(current + 1);
-    });
-
-    update();
-}
-
-// Coffee drinks manual slider (like parks)
-const coffeeSlider = document.querySelector('.coffee-slider');
-if (coffeeSlider) {
-    const wrapper = coffeeSlider.querySelector('.slides-wrapper');
-    const slides = coffeeSlider.querySelectorAll('.slide');
-    const prevBtn = coffeeSlider.querySelector('.coffee-prev');
-    const nextBtn = coffeeSlider.querySelector('.coffee-next');
-    const dotsContainer = coffeeSlider.querySelector('.coffee-dots');
-
-    let current = 0;
-
-    const dots = Array.from({ length: slides.length }, (_, i) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'dot';
-        dot.setAttribute('aria-label', `Перейти к напитку ${i + 1}`);
+        dot.setAttribute('aria-label', `${dotAriaLabelPrefix} ${i + 1}`);
         dot.addEventListener('click', () => goTo(i));
         dotsContainer.appendChild(dot);
         return dot;
     });
 
+    /** Updates the slider's visual state based on the current slide. */
     function update() {
         const offset = -current * 100;
         wrapper.style.transform = `translateX(${offset}%)`;
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
-        prevBtn.disabled = current === 0;
-        nextBtn.disabled = current === slides.length - 1;
-        prevBtn.classList.toggle('opacity-50', prevBtn.disabled);
-        nextBtn.classList.toggle('opacity-50', nextBtn.disabled);
+        if (prevBtn) { // Check if buttons exist before manipulating
+            prevBtn.disabled = current === 0;
+            prevBtn.classList.toggle('opacity-50', prevBtn.disabled);
+        }
+        if (nextBtn) {
+            nextBtn.disabled = current === slides.length - 1;
+            nextBtn.classList.toggle('opacity-50', nextBtn.disabled);
+        }
     }
 
+    /**
+     * Navigates the slider to a specific index.
+     * @param {number} index - The target slide index.
+     */
     function goTo(index) {
         if (index < 0 || index >= slides.length) return;
         current = index;
         update();
     }
 
-    prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
-    coffeeSlider.addEventListener('keydown', (e) => {
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    // Keyboard accessibility for the slider container
+    slider.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') goTo(current - 1);
         if (e.key === 'ArrowRight') goTo(current + 1);
     });
 
     update();
 }
+
+/**
+ * Sets up an automatic image slider with fade transitions and dots.
+ * @param {string} rootElementSelector - CSS selector for the slider's root element.
+ * @param {number} interval - The time in milliseconds between slide changes.
+ */
+function setupAutoSlider(rootElementSelector, interval = 3000) {
+    const slider = document.querySelector(rootElementSelector);
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll('.slide');
+    const dots = slider.querySelectorAll('.dot');
+    let currentIndex = 0;
+    let timerId = null; // Для хранения ID таймера
+
+    /**
+     * Отображает слайд по указанному индексу и обновляет таймер.
+     * @param {number} index - Индекс слайда для отображения.
+     */
+    function showSlide(index) {
+        // Проверяем, чтобы индекс был в допустимых границах
+        if (index < 0 || index >= slides.length) return;
+
+        currentIndex = index;
+
+        slides.forEach((img, i) => {
+            img.style.opacity = i === currentIndex ? '1' : '0'; // Handles image fade
+        });
+        dots.forEach((dot, i) => {
+            // Use classes for dot styling, handled by CSS
+            // Добавляем/убираем класс для стилизации и доступности
+            dot.classList.toggle('active', i === currentIndex);
+            dot.setAttribute('aria-current', i === currentIndex);
+        });
+    }
+
+    /** Переключает на следующий слайд. */
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    /** Запускает автоматическое переключение. */
+    function startSlider() {
+        if (timerId) clearInterval(timerId); // Предотвращаем запуск нескольких таймеров
+        timerId = setInterval(nextSlide, interval);
+    }
+
+    /** Останавливает автоматическое переключение. */
+    const stopSlider = () => clearInterval(timerId);
+
+    // Добавляем обработчики кликов на точки
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            // Перезапускаем таймер, чтобы следующий слайд показался через полный интервал
+            stopSlider();
+            startSlider();
+        });
+    });
+
+    slider.addEventListener('mouseenter', stopSlider);
+    slider.addEventListener('mouseleave', startSlider);
+
+    showSlide(0); // Показываем первый слайд при инициализации
+    startSlider(); // Начинаем авто-прокрутку
+}
+
+// Initialize sliders
+// Note: glockner-slider dots are now styled via CSS classes and variables,
+// so the JS only needs to toggle the 'active' class.
+// The 'glockner-dots' container was added to HTML for easier selection.
+setupAutoSlider('.glockner-slider', 3000);
+setupManualSlider('.parks-slider', 'parks', 'Перейти к слайду');
+setupManualSlider('.coffee-slider', 'coffee', 'Перейти к напитку');
 
 // Top charts: happiness, quality of life, safety, life expectancy
 (() => {
@@ -380,9 +402,9 @@ if (coffeeSlider) {
 // Re-theme existing charts on theme toggle
 function updateAllChartsTheme() {
     applyChartDefaults();
-    const { text, grid } = getChartTheme();
+    const { chartText, chartGrid } = getThemeColors();
     (window._charts || []).forEach((ch) => {
-        const scales = ch.options.scales || {};
+        const scales = ch.options.scales || {}; // Ensure scales object exists
         if (scales.x) {
             scales.x.ticks = Object.assign({}, scales.x.ticks, { color: text });
             scales.x.grid = Object.assign({}, scales.x.grid, { color: grid });
@@ -393,63 +415,71 @@ function updateAllChartsTheme() {
         }
         ch.options.plugins = ch.options.plugins || {};
         ch.options.plugins.legend = ch.options.plugins.legend || {};
-        ch.options.plugins.legend.labels = Object.assign({}, ch.options.plugins.legend.labels, { color: text });
+        ch.options.plugins.legend.labels = Object.assign({}, ch.options.plugins.legend.labels, { color: chartText });
         ch.update();
     });
 }
 
-// (removed) Mozart audio on click
-// Klimt modal open/close
-(function setupKlimtModal() {
-    const trigger = document.getElementById('klimt-card');
-    const modal = document.getElementById('klimt-modal');
-    const closeBtn = document.getElementById('klimt-modal-close');
-    if (!trigger || !modal || !closeBtn) return;
+/**
+ * Sets up a modal window with open/close functionality.
+ * @param {string} triggerId - The ID of the element that opens the modal.
+ * @param {string} modalId - The ID of the modal container.
+ * @param {string} closeBtnId - The ID of the button that closes the modal.
+ */
+function setupModal(triggerId, modalId, closeBtnId) {
+    const trigger = document.getElementById(triggerId);
+    const modal = document.getElementById(modalId);
+    const closeBtn = document.getElementById(closeBtnId);
 
-    const open = () => {
+    // Выбираем внутренний контейнер шапки, чтобы избежать его сдвига
+    const headerNav = document.querySelector('header nav');
+
+    if (!trigger || !modal || !closeBtn || !headerNav) return;
+
+    const modalContent = modal.querySelector('.transform');
+
+    const openModal = () => {
+        // 1. Сделать модальное окно видимым (display: flex)
         modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        // focus close button for accessibility
-        setTimeout(() => closeBtn.focus(), 0);
-        document.body.style.overflow = 'hidden';
+        // 2. Принудительно перерисовать, чтобы браузер применил display: flex до начала анимации opacity
+        void modal.offsetWidth; 
+        // 3. Запустить анимацию появления (opacity: 0 -> 1, scale: 0.95 -> 1)
+        modal.classList.remove('opacity-0');
+        if (modalContent) modalContent.classList.remove('scale-95');
+        // Focus the close button for accessibility
+        setTimeout(() => closeBtn.focus(), 50);
+        document.addEventListener('keydown', handleEsc);
     };
-    const close = () => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = '';
+
+    const closeModal = () => {
+        // 1. Запустить анимацию исчезновения (opacity: 1 -> 0, scale: 1 -> 0.95)
+        modal.classList.add('opacity-0');
+        if (modalContent) modalContent.classList.add('scale-95');
+        document.removeEventListener('keydown', handleEsc);
+
+        // 2. Дождаться завершения анимации. После этого:
+        //    - полностью скрыть модальное окно
+        //    - убрать отступы и вернуть скролл
+        //    - вернуть фокус на кнопку
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            trigger.focus(); // Return focus to the element that opened the modal
+        }, 300); // Длительность должна соответствовать transition-duration в CSS (duration-300 = 300ms)
     };
-    trigger.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
+
+    const handleEsc = (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    };
+
+    trigger.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) close();
+        if (e.target === modal) closeModal();
     });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) close();
-    });
-})();
+}
 
-// Schiele modal open/close
-(function setupSchieleModal() {
-    const trigger = document.getElementById('schiele-card');
-    const modal = document.getElementById('schiele-modal');
-    const closeBtn = document.getElementById('schiele-modal-close');
-    if (!trigger || !modal || !closeBtn) return;
-
-    const open = () => {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        setTimeout(() => closeBtn.focus(), 0);
-        document.body.style.overflow = 'hidden';
-    };
-    const close = () => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = '';
-    };
-    trigger.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
-    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) close(); });
-})();
-
-
+// Initialize modals
+setupModal('klimt-card', 'klimt-modal', 'klimt-modal-close');
+setupModal('schiele-card', 'schiele-modal', 'schiele-modal-close');

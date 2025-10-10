@@ -1,0 +1,355 @@
+/* ==========================================================================
+   Переменные для цветовой схемы (CSS Custom Properties)
+   ========================================================================== */
+
+   :root {
+    /* Основной акцентный цвет (синий) */
+    --primary-color: #3b82f6;
+    /* Вторичный акцентный цвет (зеленый) */
+    --secondary-color: #10b981;
+    /* Основной фон для светлой темы (очень светлый серый) */
+    --background-color: #f8fafc;
+    /* Основной цвет текста (темно-серый) */
+    --text-dark: #1e293b;
+    /* Цвет неактивной точки слайдера */
+    --dot-inactive-bg: rgba(100,116,139,0.4); /* slate-500/40 */
+    /* Цвет активной точки слайдера */
+    --dot-active-bg: #3b82f6; /* blue-500 */
+    /* Второстепенный цвет текста (светло-серый) */
+    --text-light: #64748b;
+}
+
+/* Переопределение переменных для темной темы */
+.dark {
+    /* Основной фон для темной темы (очень темный сине-серый) */
+    --background-color: #0f172a;
+    /* Основной цвет текста (светло-серый) */
+    --text-dark: #e2e8f0;
+    /* Цвет неактивной точки слайдера в темной теме */
+    --dot-inactive-bg: rgba(148,163,184,0.4); /* slate-400/40 */
+    /* Цвет активной точки слайдера в темной теме */
+    --dot-active-bg: #3b82f6; /* blue-500 (keeping blue for accent) */
+    /* Второстепенный цвет текста (более темный серый) */
+    --text-light: #94a3b8;
+}
+
+/* ==========================================================================
+   Переопределения для темной темы
+   ========================================================================== */
+
+/* Основной фон и цвет текста для всей страницы в темной теме */
+.dark body {
+    background-color: var(--background-color);
+    color: var(--text-dark);
+}
+
+/* Стили для карточек (.card) в темной теме */
+.dark .card {
+    background-color: #1f2937; /* Фон карточки (темно-серый) */
+    border-color: #334155;     /* Цвет рамки карточки */
+}
+
+/* Заголовки внутри карточек в темной теме */
+.dark .card h3, .dark .card h4 { color: #e6edf3; }
+/* Параграфы и элементы списка внутри карточек в темной теме */
+.dark .card p, .dark .card li { color: #cbd5e1; }
+/* Жирный текст (strong) в темной теме */
+.dark strong { color: #e6edf3; }
+
+/* Заголовки секций в темной теме */
+.dark .section-title { color: var(--text-dark); }
+.dark .section-subtitle { color: var(--text-light); }
+
+/* Переопределение утилитных классов Tailwind для текста в темной теме */
+.dark .text-slate-700 { color: #e2e8f0; } /* Светлый текст */
+.dark .text-slate-600 { color: #cbd5e1; } /* Чуть темнее светлого */
+.dark .text-slate-500 { color: #94a3b8; } /* Серый текст */
+.dark .text-slate-800 { color: #e5e7eb; } /* Очень светлый текст */
+
+/* Переопределение цвета рамок в темной теме */
+.dark .border-slate-200 { border-color: #334155; }
+
+/* 
+  Фон для светлых контейнеров (слайдеры парков, кофе, таймлайн) в темной теме.
+  Используется очень темный синий цвет, чтобы они выделялись на фоне основного фона #0f172a.
+*/
+.dark .bg-slate-50 {
+    background-color: #0b1324;
+}
+
+/* Устаревший класс, теперь используется .bg-slate-50. Оставлен для обратной совместимости, если где-то используется. */
+/* Поверхность для слайдера с кофе в темной теме */
+.dark .coffee-surface { background-color: #0b1324; border-color: #334155; }
+
+/* Переопределение белого фона (например, в модальных окнах) на темный */
+/* Это правило применяется к элементам, которые должны стать темными в темной теме,
+   но не к полупрозрачным, как шапка сайта. */
+.dark .card,
+.dark .modal-content { background-color: #111827; }
+
+/* ==========================================================================
+   Стили для светлой темы
+   ========================================================================== */
+
+/* Фон для слайдеров в светлой теме */
+.bg-slate-50, .coffee-slider-container {
+    background-color: #f8fafc; /* slate-50 */
+}
+
+/* Цвет рамки для слайдеров в светлой теме */
+.border-slate-200 {
+    border-color: #e2e8f0; /* slate-200 */
+}
+
+/* ==========================================================================
+   Стили для шапки сайта (Header)
+   ========================================================================== */
+
+.header-title {
+    font-size: 1.5rem; /* 24px */
+    line-height: 2rem; /* 32px */
+    font-weight: 700;
+    color: #1e293b; /* slate-800 */
+}
+.dark .header-title {
+    color: #f1f5f9; /* slate-100 */
+}
+
+/* ==========================================================================
+   Основные стили
+   ========================================================================== */
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Стили для главных заголовков секций */
+.section-title {
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem; /* 24px */
+    text-align: center;
+    max-width: 56rem; /* 896px */
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+}
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 3rem; /* 48px */
+        line-height: 1;
+    }
+}
+
+/* Стили для подзаголовков секций */
+.section-subtitle {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 3rem; /* 48px */
+    text-align: center;
+    max-width: 48rem; /* 768px */
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (min-width: 768px) {
+    .section-subtitle {
+        font-size: 1.25rem; /* 20px */
+    }
+}
+
+/* Базовый стиль для всех карточек */
+.card {
+    background-color: #fff;
+    border-radius: 1rem; /* 16px */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+    transition-property: background-color, border-color, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    border: 1px solid rgba(226, 232, 240, 0.6);
+}
+.card:hover {
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    transform: translateY(-0.5rem); /* -8px */
+}
+
+/* Ссылки в основной навигации */
+.nav-link {
+    padding-left: 1rem; padding-right: 1rem;
+    padding-top: 0.5rem; padding-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    border-radius: 9999px;
+    transition-property: color, background-color;
+    transition-duration: 300ms;
+}
+.nav-link:hover {
+    background-color: #e2e8f0; /* slate-200 */
+    color: #0f172a; /* slate-900 */
+}
+
+/* Активная ссылка в навигации */
+.nav-link.active {
+    background-color: #3b82f6; /* blue-500 */
+    color: #fff;
+}
+.nav-link.active:hover {
+    background-color: #2563eb; /* blue-600 */
+    color: #fff;
+}
+
+/* Отступы для секций и разделитель между ними */
+section {
+    padding-top: 4rem; /* 64px */
+    padding-bottom: 4rem; /* 64px */
+}
+section + section {
+    padding-top: 6rem; /* 96px, добавляет отступ ПОСЛЕ линии */
+    border-top: 1px solid #e5e7eb; /* slate-200 */
+}
+
+/* Плавный переход для элементов, которые меняют цвет при смене темы */
+header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, strong, h3, h4,
+.bg-slate-50, .coffee-slider-container, .border-slate-200 {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ==========================================================================
+   Анимации и компоненты
+   ========================================================================== */
+
+/* Анимация появления карточек при прокрутке */
+.animated-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animated-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Декоративный элемент (кружок) для временной шкалы в секции "История" */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -35px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    border: 5px solid var(--primary-color);
+}
+
+/* Главный экран (Hero) с фоновым изображением */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('https://www.atorus.ru/sites/default/files/styles/head_carousel/public/2021-09/20308f.jpg.webp?itok=jNz4Qgod');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Заголовки на главном экране */
+.hero-title {
+    font-size: 3rem; /* text-5xl */
+    font-weight: 900; /* font-black */
+    margin-bottom: 1rem; /* mb-4 */
+    letter-spacing: -0.025em; /* tracking-tight */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 4.5rem; /* md:text-7xl */
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 300; /* font-light */
+    max-width: 48rem; /* max-w-3xl */
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+@media (min-width: 768px) {
+    .hero-subtitle {
+        font-size: 1.5rem; /* md:text-2xl */
+    }
+}
+
+/* Кнопка переключения темы */
+.theme-toggle-button {
+    margin-left: 1rem; /* ml-4 */
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    border-radius: 0.5rem; /* rounded-lg */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* font-semibold */
+    background-color: #e2e8f0; /* bg-slate-200 */
+    color: #1e293b; /* text-slate-800 */
+}
+.dark .theme-toggle-button {
+    background-color: #334155; /* dark:bg-slate-700 */
+    color: #f1f5f9; /* dark:text-slate-100 */
+}
+
+/* Точки боковой навигации */
+.side-nav-dot {
+    display: block; width: 0.75rem; height: 0.75rem; /* w-3 h-3 */
+    border-radius: 9999px; background-color: #cbd5e1; /* bg-slate-300 */
+}
+.dark .side-nav-dot { background-color: #475569; } /* dark:bg-slate-600 */
+/* ==========================================================================
+   Слайдеры
+   ========================================================================== */
+
+/* Слайдер парков: ускорение анимации */
+.parks-slider .slides-wrapper {
+    will-change: transform;
+}
+
+/* Точки-индикаторы для ручных слайдеров (парки, кофе) */
+.parks-slider .dot, .coffee-slider .dot, .glockner-slider .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background-color: var(--dot-inactive-bg); /* неактивная точка */
+    transition: background-color 200ms ease;
+}
+.parks-slider .dot.active, .coffee-slider .dot.active, .glockner-slider .dot.active {
+    background-color: var(--dot-active-bg); /* активная точка */
+}
+/* Glockner slider dots have a slightly different initial size, but use the same color variables */
+.glockner-slider .dot { width: 0.625rem; height: 0.625rem; } /* w-2.5 h-2.5 */
+
+/* Автоматический слайдер (Гросглокнер): плавная смена прозрачности */
+.glockner-slider .slide {
+    transition: opacity 700ms ease-in-out;
+}
+.glockner-slider .dot {
+    transition: background-color 300ms ease;
+}
+
+/* ==========================================================================
+   Специфичные компоненты
+   ========================================================================== */
+
+/* Аватар в секции "Личности" */
+.person-avatar {
+    width: 10rem; height: 10rem; /* w-40 h-40 */
+    margin-left: auto; margin-right: auto; /* mx-auto */
+    border-radius: 9999px; /* rounded-full */
+    object-fit: cover;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); /* shadow-2xl */
+    margin-bottom: 1rem; /* mb-4 */
+    border: 4px solid white;
+}
