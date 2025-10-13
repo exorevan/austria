@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>История Австрии - Интерактивный гид</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Этот скрипт выполняется до отрисовки страницы, чтобы избежать "мигания" темы.
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="antialiased">
+
+    <!-- Placeholder for the header -->
+    <div id="header-placeholder" class="bg-white dark:bg-slate-900/80 dark:backdrop-blur-lg shadow-sm sticky top-0 z-50 header-fade"></div>
+
+    <main class="px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+        <!-- History Section -->
+        <section id="history">
+            <div class="text-center mb-16">
+                <h2 class="section-title">Ключевые эпохи истории</h2>
+                <p class="section-subtitle">История Австрии — это сага о превращении пограничной территории в центр
+                    великой империи и ее трансформации в процветающую нейтральную республику. Население на 2025 год:
+                    <strong>~9.2 миллиона человек</strong>.</p>
+            </div>
+            <div class="relative pl-12 border-l-4 border-slate-200">
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">до 996 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Ранние эпохи и становление регионов</h4>
+                    <p><strong class="text-slate-800">Территория современной Австрии формируется на перекрёстке кельтского, римского и германо‑славянского миров.</strong> До появления названия Ostarrîchi здесь складывались хозяйство, дороги и власть разных культур.</p>
+                    <ul class="mt-3 text-slate-700 list-disc list-inside text-sm">
+                        <li><strong class="text-slate-800">Кельты (Норикум)</strong>: горное дело (железо), торговля; союз племён, позднее клиентское царство Рима.</li>
+                        <li><strong class="text-slate-800">Римская эпоха</strong>: провинция <em>Noricum</em>, дороги (в т.ч. через Альпы), форты Дунайского лимеса, романизация городов.</li>
+                        <li><strong class="text-slate-800">Великие переселения</strong>: германцы, славяне и аваpы; смена этнической карты, упадок римских институтов.</li>
+                        <li><strong class="text-slate-800">Раннее Средневековье</strong>: заселение баварцами; влияние Агилофингов, затем франкских Каролингов.</li>
+                        <li><strong class="text-slate-800">Франкская «Восточная марка»</strong>: после разгрома аваp (VIII–IX вв.) Каролинги создают приграничную марку (предтеча будущего Ostmark).</li>
+                    </ul>
+                </div>
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">996 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Рождение имени</h4>
+                    <p><strong class="text-slate-800">Формируется идентичность и политическая субъектность региона.</strong> Первое упоминание названия <em>Ostarrîchi</em> («Восточное государство»), от которого произошло
+                        современное Österreich. Это была пограничная территория Священной Римской империи под властью
+                        династии Бабенбергов.</p>
+                    <ul class="mt-3 text-slate-700 list-disc list-inside text-sm">
+                        <li><strong class="text-slate-800">Укрепление марки</strong>: освоение и защита восточной границы, строительство крепостей и заселение.</li>
+                        <li><strong class="text-slate-800">Города и управление</strong>: зачатки городской автономии, монетная регалия, админ. институты.</li>
+                        <li><strong class="text-slate-800">Церковное покровительство</strong>: монастыри и соборы (напр., Мельк) как центры культуры и земледелия.</li>
+                        <li><strong class="text-slate-800">Дунайская торговля</strong>: развитие путей и рынков вдоль Дуная, рост ремёсел.</li>
+                        <li><strong class="text-slate-800">Подъём Вены</strong>: перенос резиденции (1155) и превращение города в политико-экономический центр.</li>
+                    </ul>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Erzbischof_Konrad_von_Salzburg.JPG/320px-Erzbischof_Konrad_von_Salzburg.JPG" alt="Остаррихи-уркунде (996)" class="mt-3 w-40 h-24 object-cover rounded-md border border-slate-200" />
+                </div>
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">1156 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Privilegium Minus — герцогство Австрия</h4>
+                    <p><strong class="text-slate-800">Ключевой политико‑правовой шаг к самостоятельности восточной марки.</strong> Император Фридрих I Барбаросса возвёл Ostmark в <em>герцогство Австрия</em>, выделив её из Баварии и закрепив особые права Бабенбергов (в т.ч. по наследованию).</p>
+                    <ul class="mt-3 text-slate-700 list-disc list-inside text-sm">
+                        <li><strong class="text-slate-800">Отдельный статус</strong>: собственные институты и династия → отличная от баварской/немецкой административная траектория.</li>
+                        <li><strong class="text-slate-800">Языковая основа</strong>: австро‑баварские диалекты формируются в Средние века, усиливая региональную самобытность.</li>
+                        <li><strong class="text-slate-800">Центры власти</strong>: рост Вены и Клостернойбурга как опорных пунктов будущей «австрийской» идентичности.</li>
+                    </ul>
+                </div>
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">1278 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Эпоха Габсбургов</h4>
+                    <p><strong class="text-slate-800">Австрия становится ядром одной из ведущих европейских держав.</strong> Начало правления династии Габсбургов, которое продлилось более 600 лет и определило судьбу
+                        Европы, превратив Австрию в центр могущественной империи.</p>
+                    <ul class="mt-3 text-slate-700 list-disc list-inside text-sm">
+                        <li><strong class="text-slate-800">Дунайская торговля</strong> и транзит между севером и югом Европы</li>
+                        <li><strong class="text-slate-800">Горнорудная база</strong> Богемии и Альп (серебро, железо, соль)</li>
+                        <li><strong class="text-slate-800">Ремёсла и мануфактуры</strong> в многонациональных землях империи</li>
+                        <li><strong class="text-slate-800">Финансы Вены</strong> и двора как центр капитала и спроса</li>
+                    </ul>
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_685c37983834b13f503329ef_685c379b52b1f4181a29d073/scale_1200" alt="Герб дома Габсбургов" class="mt-3 w-40 h-24 object-cover rounded-md border border-slate-200 bg-white" />
+                </div>
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">1867 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Австро-Венгрия</h4>
+                    <p><strong class="text-slate-800">Страна трансформируется в дуалистическую империю и сохраняет статус великой державы.</strong> После поражения от Пруссии империя реорганизована в дуалистическую монархию — Австро-Венгрию,
+                        сложное многонациональное государство, просуществовавшее до 1918 года.</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Civil_ensign_of_Austria-Hungary_%281869-1918%29.svg/1200px-Civil_ensign_of_Austria-Hungary_%281869-1918%29.svg.png" alt="Флаг Австро-Венгрии (1867–1918)" class="mt-3 w-40 h-24 object-cover rounded-md border border-slate-200 bg-white" />
+                </div>
+                
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">1918 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Первая Австрийская Республика</h4>
+                    <p><strong class="text-slate-800">Рождение республики после распада Австро-Венгрии.</strong> Провозглашение республики в Вене, попытка самоопределения и поиск новой идентичности в границах
+                        «немецкой Австрии», тяжелый экономический и политический старт межвоенного периода.</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Flag_of_Austria_%281230%E2%80%931934%29.svg/1200px-Flag_of_Austria_%281230%E2%80%931934%29.svg.png" alt="Провозглашение республики, 1918" class="mt-3 w-40 h-24 object-cover rounded-md border border-slate-200" />
+                </div>
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">1919 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Независимость и международное признание</h4>
+                    <p><strong class="text-slate-800">Международная фиксация суверенитета и границ.</strong> Сен-Жерменский мирный договор закрепил независимость Австрии, запретив объединение с Германией и
+                        определив новые границы и международно-правовой статус страны.</p>
+                    <img src="https://news.store.rambler.ru/img/f96e8a95057315a4ca4561a2bd9f2d0e?img-format=auto&img-1-resize=height:400,fit:max&img-2-filter=sharpen" alt="Сен-Жерменский договор, 1919" class="mt-3 w-40 h-24 object-cover rounded-md border border-slate-200" />
+                </div>
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">1938 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Аншлюс</h4>
+                    <p><strong class="text-slate-800">Утрата суверенитета и включение в нацистскую Германию.</strong> Аннексия Австрии нацистской Германией на фоне политической нестабильности и установления
+                        авторитарного режима в Первой Австрийской Республике (1918–1938).</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Heldenplatz.jpg" alt="Вена, Хельденплац, 1938" class="mt-3 w-40 h-24 object-cover rounded-md border border-slate-200" />
+                </div>
+                <div class="mb-12 relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">1945 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Восстановление независимости</h4>
+                    <p><strong class="text-slate-800">Конец нацистскому правлению и провозглашение независимости.</strong> 27 апреля 1945 года Провизорическое правительство провозгласило восстановление независимости Австрии; начался период союзной оккупации и путь к Государственному договору 1955 года.</p>
+                    <img src="https://nwm.at/wp-content/uploads/2024/10/Karte_Alliierte_Besatzungszonen_in_Oesterreich_von_1945_bis_1955-1.jpg" alt="Провозглашение независимости Австрии, 1945" class="mt-3 w-40 h-24 object-cover rounded-md border border-slate-200 bg-white" />
+                </div>
+                <div class="relative timeline-item animated-card">
+                    <strong class="text-blue-600 text-xl block">1955 г.</strong>
+                    <h4 class="text-2xl font-bold my-2">Вторая Республика</h4>
+                    <p><strong class="text-slate-800">Возвращение суверенитета и закрепление нейтралитета — новая роль в Европе.</strong> После 10 лет оккупации союзниками, подписание Государственного договора. Австрия вновь обретает
+                        суверенитет, провозглашает постоянный нейтралитет и создает современную демократическую Вторую
+                        Республику.</p>
+                    <img src="https://www.bpb.de/cache/images/7/309807_teaser_widh_800.jpg?4CD99" alt="Подписание Государственного договора, 1955" class="mt-3 w-40 h-24 object-cover rounded-md border border-slate-200" />
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Placeholder for the footer -->
+    <div id="footer-placeholder"></div>
+    <!-- Placeholder for the scroll-to-top button -->
+    <div id="scroll-to-top-placeholder"></div>
+
+    <script src="../app.js" defer></script>
+</body>
+
+</html>

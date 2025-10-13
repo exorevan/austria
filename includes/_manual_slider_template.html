@@ -1,0 +1,20 @@
+<!-- Generic Manual Slider Template -->
+<div class="animated-card">
+    <!-- Slot for the title -->
+    <div id="slider-title-slot"></div>
+    <div class="relative max-w-5xl mx-auto rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <div class="manual-slider" role="region" aria-roledescription="carousel">
+            <div class="overflow-hidden">
+                <div class="slides-wrapper transition-transform duration-500" style="display:flex;">
+                    <!-- Slot for slides -->
+                    <div id="slides-slot" class="flex w-full"></div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+                <button class="slider-prev px-4 py-2 rounded-full border bg-slate-300 hover:bg-slate-400 text-slate-800 font-semibold border-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100 dark:border-slate-600">Назад</button>
+                <div class="slider-dots flex gap-2"></div>
+                <button class="slider-next px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold">Вперед</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<!-- Side Menu Overlay -->
+<div id="menu-overlay" class="fixed inset-0 bg-black/60 z-[90] hidden"></div>
+
+<!-- Side Menu Panel -->
+<div id="side-menu" class="fixed top-0 left-0 h-full w-72 bg-white dark:bg-slate-900 shadow-xl z-[100] transform -translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="p-4 flex justify-between items-center border-b border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-bold">Меню</h3>
+        <button id="side-menu-close-button" class="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Закрыть меню">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+    </div>
+    <nav id="side-menu-nav" class="p-4 space-y-2 overflow-y-auto h-[calc(100%-65px)] custom-scrollbar">
+        <!-- Links will be injected by JS -->
+    </nav>
+</div>
