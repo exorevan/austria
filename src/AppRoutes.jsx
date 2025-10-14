@@ -1,15 +1,15 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import NaturePage from './pages/NaturePage';
-import WeatherPage from './pages/WeatherPage';
-import EconomyPage from './pages/EconomyPage';
-import TransportPage from './pages/TransportPage';
-import CulturePage from './pages/CulturePage';
-import FoodPage from './pages/FoodPage';
-import HistoryPage from './pages/HistoryPage';
-import PeoplePage from './pages/PeoplePage';
-import MiscPage from './pages/MiscPage';
+import MainPage from './pages/Main';
+import NaturePage from './pages/Nature';
+import WeatherPage from './pages/Weather';
+import EconomyPage from './pages/Economy';
+import TransportPage from './pages/Transport';
+import CulturePage from './pages/Culture';
+import FoodPage from './pages/Food';
+import HistoryPage from './pages/History';
+import PeoplePage from './pages/People';
+import MiscPage from './pages/Misc';
 
 const AppRoutes = () => {
   return (
