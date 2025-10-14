@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru" class="scroll-smooth">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!-- CSP можно будет настроить позже через плагины Vite -->
     <title>Интерактивный гид по Австрии</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Этот скрипт выполняется до отрисовки страницы, чтобы избежать "мигания" темы.
+        // Этот скрипт по-прежнему актуален для избежания "мигания" темы
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -19,111 +18,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body class="antialiased">
-
-    <!-- Placeholder for the side menu -->
-    <div id="side-menu-placeholder"></div>
-    <!-- Placeholder for the header -->
-    <div id="header-placeholder" class="bg-white dark:bg-slate-900/80 dark:backdrop-blur-lg shadow-sm sticky top-0 z-50 header-fade"></div>
-    
-        <!-- Hero Section -->
-        <div class="hero h-[70vh] flex items-center justify-center text-white text-center" role="banner">
-        <div class="px-5 sm:px-6 lg:px-8">
-            <h1 class="hero-title">Откройте для себя Австрию</h1>
-            <p class="hero-subtitle">Интерактивный путеводитель по
-                стране альпийских вершин, имперского наследия и высокого качества жизни.</p>
-        </div>
-    </div>
-    
-    <main class="px-5 sm:px-6 lg:px-8 py-16 max-w-7xl mx-auto">
-        <h2 class="section-title">Исследуйте Австрию</h2>
-        <p class="section-subtitle">Выберите интересующий вас раздел, чтобы узнать больше о стране альпийских вершин, имперского наследия и высокого качества жизни.</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Nature Card -->
-            <a href="pages/nature.html" class="card group">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Grossglockner_from_SW.jpg/1280px-Grossglockner_from_SW.jpg?q=80&w=1964&auto=format&fit=crop" alt="Величественные Альпы" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">Природа</h3>
-                    <p class="text-slate-600">Альпы, национальные парки и кристально чистые озера.</p>
-                </div>
-            </a>
-            <!-- Weather Card -->
-            <a href="pages/weather.html" class="card group">
-                <img src="https://wallpapers.com/images/hd/4k-mountain-pictures-6f41bj9mg1fu6lhv.jpg" alt="Горный пейзаж Австрии в разное время года" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">Погода</h3>
-                    <p class="text-slate-600">Климатические зоны, времена года и их влияние.</p>
-                </div>
-            </a>
-            <!-- Economy Card -->
-            <a href="pages/economy.html" class="card group">
-                <img src="https://avatars.mds.yandex.net/i?id=7acd60614c79efc259f4625465c335bb_l-10917798-images-thumbs&n=13" alt="Деловой район Вены" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">Экономика</h3>
-                    <p class="text-slate-600">Высокий ВВП, инновации и ключевые отрасли.</p>
-                </div>
-            </a>
-            <!-- Transport Card -->
-            <a href="pages/transport.html" class="card group">
-                <img src="https://presse-oebb.at/Content/747422/cd4dce8d-9fa3-44a6-ab66-fa93eaeab727/1200/2400/.jpg?q=80&w=2070&auto=format&fit=fit" alt="Скоростной поезд Railjet" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">Транспорт</h3>
-                    <p class="text-slate-600">Эффективность, пунктуальность и KlimaTicket.</p>
-                </div>
-            </a>
-            <!-- Culture Card -->
-            <a href="pages/culture.html" class="card group">
-                <img src="https://magazineart.art/wp-content/uploads/opernball_2019_117295-c-michael-poehn.jpg?q=80&w=1965&auto=format&fit=fit" alt="Венский оперный бал" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">Культура</h3>
-                    <p class="text-slate-600">От балов и фестивалей до альпийских традиций.</p>
-                </div>
-            </a>
-            <!-- Food Card -->
-            <a href="pages/food.html" class="card group">
-                <img src="https://img.taste.com.au/AUE-WXuq/taste/2016/11/sachertorte-88202-1.jpeg?q=80&w=1974&auto=format&fit=fit" alt="Торт Захер" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">Еда</h3>
-                    <p class="text-slate-600">Кулинарное наследие: от шницеля до венских кофеен.</p>
-                </div>
-            </a>
-            <!-- History Card -->
-            <a href="pages/history.html" class="card group">
-                <img src="https://www.bpb.de/cache/images/7/309807_teaser_widh_800.jpg?4CD99" alt="Подписание Государственного договора в 1955" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">История</h3>
-                    <p class="text-slate-600">Ключевые эпохи: от империи Габсбургов до Второй республики.</p>
-                </div>
-            </a>
-            <!-- People Card -->
-            <a href="pages/people.html" class="card group">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wolfgang-amadeus-mozart_1.jpg/330px-Wolfgang-amadeus-mozart_1.jpg?q=80&w=1964&auto=format&fit=fit" alt="Портрет Моцарта" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">Личности</h3>
-                    <p class="text-slate-600">Гении, изменившие мир: от Моцарта до Фрейда.</p>
-                </div>
-            </a>
-            <!-- Misc Card -->
-            <a href="pages/misc.html" class="card group">
-                <img src="https://pic.rutubelist.ru/video/8e/79/8e7900ba6ac2adad9e75b77ea60e75bc.jpg" alt="Вена, Карлскирхе" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">Разное</h3>
-                    <p class="text-slate-600">Качество жизни, общество и интересные факты.</p>
-                </div>
-            </a>
-        </div>
-    </main>
-    
-        <!-- Footer -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Placeholder for the scroll-to-top button -->
-    <div id="scroll-to-top-placeholder"></div>
-    <script src="app.js" defer></script>
-</body>
-
+  </head>
+  <body class="antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
