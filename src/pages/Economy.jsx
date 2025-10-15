@@ -1,8 +1,13 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import useCharts from '../hooks/useCharts';
 
-// TODO: Перенести логику графика из app.js с помощью хуков
 
 const EconomyPage = () => {
+  const location = useLocation();
+  // Вызываем хук для отрисовки графика ВВП
+  useCharts(location, ['gdpChart']);
+
   return (
     <main className="px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <section id="economy">
@@ -46,7 +51,6 @@ const EconomyPage = () => {
           <div className="card lg:col-span-1 p-8 animated-card">
             <h3 className="text-2xl font-bold mb-4 text-center">Сравнение ВВП на душу населения в ЕС (2024)</h3>
             <canvas id="gdpChart"></canvas>
-            <p className="text-center text-amber-600 mt-4">[Здесь будет график ВВП]</p>
           </div>
         </div>
         <div className="card p-8 mt-8 animated-card">
@@ -61,7 +65,7 @@ const EconomyPage = () => {
             </div>
             <div>
               <p>Австрия сочетает историческое наследие с инновациями, опираясь на устойчивое развитие
-                и «зеленую» энергетику. Туризм, чистая энергия и высокое качество воды — ключевые активы.</p>
+                и «зеленую» энергетику. Туризм, чистая энергия и высокое качество воды – ключевые активы.</p>
             </div>
           </div>
         </div>
@@ -70,4 +74,4 @@ const EconomyPage = () => {
   );
 };
 
-export default EconomyPage;
+export default React.memo(EconomyPage);

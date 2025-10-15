@@ -7,14 +7,14 @@ const peopleData = [
     id: 'klimt', name: 'Густав Климт', description: 'Художник, лидер Сецессиона, автор «Поцелуя»', avatarSrc: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Klimt.jpg/330px-Klimt.jpg?q=80&w=1964&auto=format&fit=fit',
     modal: {
       imgSrc: 'https://a3copydesign.com/upload/iblock/61a/r6x6fuhg9km6xbc0h8zlz331okim8is6/f7007b9656a9_SZHATIE.jpg',
-      caption: 'Густав Климт — «Поцелуй» (1907–1908)'
+      caption: 'Густав Климт – «Поцелуй» (1907–1908)'
     }
   },
   {
     id: 'schiele', name: 'Эгон Шиле', description: 'Яркий представитель экспрессионизма', avatarSrc: 'https://upload.wikimedia.org/wikipedia/commons/1/14/Egon_Schiele_photo.jpg?q=80&w=1964&auto=format&fit=fit',
     modal: {
       imgSrc: 'https://artchive.ru/res/media/img/oy1200/work/cb3/229272@2x.jpg',
-      caption: 'Эгон Шиле — «Автопортрет с поднятой рукой» (1910)'
+      caption: 'Эгон Шиле – «Автопортрет с поднятой рукой» (1910)'
     }
   },
   { id: 'freud', name: 'Зигмунд Фрейд', description: 'Отец психоанализа (теории Id, Ego, Superego)', avatarSrc: 'https://eponym.ru/GaleryImages/IQJFLOIVCN8AEUNUJIO2NG6X1.jpg?q=80&w=1935&auto=format&fit=fit' },
@@ -57,7 +57,7 @@ const PeoplePage = () => {
                 role={person.modal ? 'button' : undefined}
                 tabIndex={person.modal ? 0 : -1}
                 onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && openModal(person.id)}
-              >
+              > 
                 <img src={person.avatarSrc} alt={`[Портрет ${person.name}]`} className="person-avatar" />
                 <h4 className="font-bold text-lg">{person.name}</h4>
                 <p className="text-sm text-slate-600">{person.description}</p>
@@ -71,6 +71,7 @@ const PeoplePage = () => {
         {activeModal && (
           <>
             <img
+              loading="lazy"
               src={activeModal.imgSrc}
               alt={activeModal.caption}
               className="w-full h-auto max-h-[80vh] object-contain"
@@ -85,4 +86,4 @@ const PeoplePage = () => {
   );
 };
 
-export default PeoplePage;
+export default React.memo(PeoplePage);

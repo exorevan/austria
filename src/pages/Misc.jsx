@@ -1,22 +1,16 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import useCharts from '../hooks/useCharts';
+import miscPageData from '../data/miscPageData.json';
 
-// TODO: Перенести логику графиков из app.js с помощью хуков
-
-const statsCards = [
-  { title: 'Вена', value: '2-е', description: 'место в мире по качеству жизни (Mercer, 2024), уступив Цюриху' },
-  { title: 'Индекс Счастья', value: '14-е', description: 'место в мире (World Happiness Report, 2024)' },
-  { title: 'Безопасность', value: '3-е', description: 'место в мире (Global Peace Index, 2025)' },
-  { title: 'Продолжительность жизни', value: '82.37', description: 'года (прогноз 2025: ♀ 84.4, ♂ 79.8)' }
-];
-
-const comparisonChartsData = [
-    { id: 'happinessTopChart', title: 'Топ стран по счастью' },
-    { id: 'qolTopChart', title: 'Качество жизни (индекс)' },
-    { id: 'safetyTopChart', title: 'Безопасность (GPI)' },
-    { id: 'lifeTopChart', title: 'Продолжительность жизни' }
-];
+const { statsCards, comparisonChartsData } = miscPageData;
 
 const MiscPage = () => {
+  const location = useLocation();
+  // Вызываем хук для отрисовки графиков, передавая ID нужных для этой страницы.
+  // Передаем location, чтобы графики перерисовывались при навигации,
+  // учитывая возможную смену темы (dark/light).
+  useCharts(location, ['obesityChart', 'happinessChart']);
   return (
     <main className="px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <section id="misc">
@@ -51,16 +45,14 @@ const MiscPage = () => {
             <p className="text-center text-sm mb-4 text-slate-500">(Данные Статистического управления Австрии за
               2019)</p>
             <canvas id="obesityChart"></canvas>
-            <p className="text-center text-amber-600 mt-4">[Здесь будет график ИМТ]</p>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-          {comparisonChartsData.map(chart => (
+        <div className="grid md:grid-cols-2 gap-8 mt-12">
+          {comparisonChartsData.map((chart) => (
             <div key={chart.id} className="card p-6 animated-card">
               <h3 className="text-lg font-semibold mb-2 text-center">{chart.title}</h3>
               <canvas id={chart.id}></canvas>
-              <p className="text-center text-amber-600 mt-4">[Здесь будет график]</p>
             </div>
           ))}
         </div>
@@ -69,4 +61,4 @@ const MiscPage = () => {
   );
 };
 
-export default MiscPage;
+export default React.memo(MiscPage);

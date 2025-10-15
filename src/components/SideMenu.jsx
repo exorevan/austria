@@ -1,17 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { navLinksData } from './navigation';
 
-const navLinksData = [
-    { href: "/nature", text: "Природа" },
-    { href: "/weather", text: "Погода" },
-    { href: "/economy", text: "Экономика" },
-    { href: "/transport", text: "Транспорт" },
-    { href: "/culture", text: "Культура" },
-    { href: "/food", text: "Еда" },
-    { href: "/history", text: "История" },
-    { href: "/people", text: "Личности" },
-    { href: "/misc", text: "Разное" },
-];
 
 const SideMenu = ({ isOpen, onClose }) => {
     useEffect(() => {
@@ -24,16 +14,19 @@ const SideMenu = ({ isOpen, onClose }) => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
             document.addEventListener('keydown', handleEsc);
+        } else {
+            document.body.style.overflow = '';
         }
 
         return () => {
+            // Эта функция очистки гарантированно сбросит стиль при размонтировании
             document.body.style.overflow = '';
             document.removeEventListener('keydown', handleEsc);
         };
     }, [isOpen, onClose]);
 
     const overlayClasses = isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none';
-    const menuClasses = isOpen ? 'translate-x-0' : '-translate-x-full';
+    const menuClasses = isOpen ? 'translate-x-0' : 'translate-x-full';
 
     return (
         <>
@@ -45,7 +38,7 @@ const SideMenu = ({ isOpen, onClose }) => {
 
             <div
                 id="side-menu"
-                className={`fixed top-0 left-0 h-full w-80 max-w-[80vw] bg-white dark:bg-slate-900 shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${menuClasses}`}
+                className={`fixed top-0 right-0 h-full w-80 max-w-[80vw] bg-white dark:bg-slate-900 shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${menuClasses}`}
                 role="dialog"
                 aria-modal="true"
             >
@@ -55,7 +48,7 @@ const SideMenu = ({ isOpen, onClose }) => {
                         <svg className="w-6 h-6 text-slate-600 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
                 </div>
-                <nav className="p-4 mobile-nav-container">
+                <nav className="p-4 flex flex-col items-stretch space-y-2">
                     {navLinksData.map((link) => <NavLink key={link.href} to={link.href} onClick={onClose} className="mobile-nav-link">{link.text}</NavLink>)}
                 </nav>
             </div>

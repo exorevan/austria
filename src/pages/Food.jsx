@@ -3,7 +3,7 @@ import ManualSlider from '../components/ManualSlider';
 
 const coffeeSlidesData = [
   {
-    imgSrc: 'https://mardonicafe.hu/wp-content/uploads/2023/07/melange.jpg?q=80&w=1974&auto=format&fit=fit', alt: 'Melange',
+    imgSrc: 'https://static-sl.insales.ru/files/1/3223/17050775/original/6.png?q=80&w=1974&auto=format&fit=fit', alt: 'Melange',
     content: <>
       <h4 className="text-2xl font-bold mb-2">Melange</h4>
       <p className="text-slate-600 mb-3">Венский аналог капучино (обычно с меньшим количеством пены).</p>
@@ -11,7 +11,7 @@ const coffeeSlidesData = [
     </>
   },
   {
-    imgSrc: 'https://img.freepik.com/premium-vector/different-types-coffee-drinks-including-viennese-coffee-einspanner_100803-110.jpg?q=80&w=1974&auto=format&fit', alt: 'Einspänner',
+    imgSrc: 'https://cafecentral.wien/wp-content/uploads/einspaenner_cafecentral.jpg?q=80&w=1974&auto=format&fit', alt: 'Einspänner',
     content: <>
       <h4 className="text-2xl font-bold mb-2">Einspänner</h4>
       <p className="text-slate-600 mb-3">Двойной эспрессо в стеклянном стакане с крупной шапкой сливок.</p>
@@ -35,7 +35,7 @@ const coffeeSlidesData = [
     </>
   },
   {
-    imgSrc: 'https://cdn.tasteatlas.com//images/ingredients/fef72fc04df94f539ad7525076221247.jpg?width=320&height=205?q=80&w=1974&auto=format&fit', alt: 'Kapuziner',
+    imgSrc: 'https://www.coffeeness.de/wp-content/uploads/2024/06/kapuziner-kaffee-rezept.jpg?width=320&height=205?q=80&w=1974&auto=format&fit', alt: 'Kapuziner',
     content: <>
       <h4 className="text-2xl font-bold mb-2">Kapuziner</h4>
       <p className="text-slate-600 mb-3">Мокко с несколькими каплями сливок (цвет рясы капуцина).</p>
@@ -55,25 +55,25 @@ const FoodPage = () => {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           <div className="card animated-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Wiener-Schnitzel02.jpg?q=80&w=1964&auto=format&fit=fit"
+            <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Wiener-Schnitzel02.jpg?q=80&w=1964&auto=format&fit=fit"
               alt="[Изображение венского шницеля]" className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="font-bold text-lg">Wiener Schnitzel</h3>
-              <p className="text-sm text-slate-600">Настоящий по закону — только из телятины. Блюдо из свинины
+              <p className="text-sm text-slate-600">Настоящий по закону – только из телятины. Блюдо из свинины
                 называется «Schnitzel Wiener Art».</p>
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://img.taste.com.au/AUE-WXuq/taste/2016/11/sachertorte-88202-1.jpeg?q=80&w=1974&auto=format&fit=fit"
+            <img loading="lazy" src="https://img.taste.com.au/AUE-WXuq/taste/2016/11/sachertorte-88202-1.jpeg?q=80&w=1974&auto=format&fit=fit"
               alt="[Изображение торта Захер]" className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="font-bold text-lg">Sachertorte</h3>
               <p className="text-sm text-slate-600">Легендарный торт, созданный в 1832 году 16-летним Францем
-                Захером для князя фон Меттерниха. Рецепт — строго охраняемый секрет отеля "Захер".</p>
+                Захером для князя фон Меттерниха. Рецепт – строго охраняемый секрет отеля "Захер".</p>
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://www.einfachkochen.de/sites/einfachkochen.de/files/styles/full_width_tablet_4_3/public/2021-05/tafelspitz_mit_meerrettichsosse_1_0.jpg?h=4521fff0&itok=vjkcAuyq?q=80&w=1974&auto=format&fit=fit"
+            <img loading="lazy" src="https://www.einfachkochen.de/sites/einfachkochen.de/files/styles/full_width_tablet_4_3/public/2021-05/tafelspitz_mit_meerrettichsosse_1_0.jpg?h=4521fff0&itok=vjkcAuyq?q=80&w=1974&auto=format&fit=fit"
               alt="[Изображение Тафельшпиц]" className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="font-bold text-lg">Tafelspitz</h3>
@@ -82,7 +82,7 @@ const FoodPage = () => {
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://cookingqueens.nl/wp-content/uploads/2023/01/fe1561ef-4b86-45d2-bde9-61127f55156d-975x1300.jpg?q=80&w=1964&auto=format&fit=fit"
+            <img loading="lazy" src="https://cookingqueens.nl/wp-content/uploads/2023/01/fe1561ef-4b86-45d2-bde9-61127f55156d-975x1300.jpg?q=80&w=1964&auto=format&fit=fit"
               alt="[Изображение тирольского грёстля]" className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="font-bold text-lg">Tiroler Gröstl</h3>
@@ -91,7 +91,7 @@ const FoodPage = () => {
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://www.fioreoliveoils.com/cdn/shop/files/StyrianPumpkinSeedOliveOIlPGI.png?v=1698084448?q=80&w=1974&auto=format&fit=fit"
+            <img loading="lazy" src="https://www.fioreoliveoils.com/cdn/shop/files/StyrianPumpkinSeedOliveOIlPGI.png?v=1698084448?q=80&w=1974&auto=format&fit=fit"
               alt="[Изображение тыквенного масла]" className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="font-bold text-lg">Steirischer Ölkürbis</h3>
@@ -100,7 +100,7 @@ const FoodPage = () => {
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://wine-and-spirits.md/wp-content/uploads/2024/10/WV-1.jpg?q=80&w=2070&auto=format&fit=fit"
+            <img loading="lazy" src="https://wine-and-spirits.md/wp-content/uploads/2024/10/WV-1.jpg?q=80&w=2070&auto=format&fit=fit"
               alt="[Изображение виноградников Вахау]" className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="font-bold text-lg">Виноделие в Вахау</h3>
@@ -112,7 +112,7 @@ const FoodPage = () => {
 
         <div className="card p-8 animated-card mt-12">
           <div className="rounded-xl overflow-hidden mb-6 h-60">
-            <img src="https://austria-today.at/uploads/2019/05/cafe-restaurant-im-kunsthistorischen-museum-1-e1687163379550.jpg.webp?q=80&w=1974&auto=format&fit=fit" alt="[Интерьер венской кофейни]" className="w-full h-full object-cover object-bottom" />
+            <img loading="lazy" src="https://czaswina.pl/upload/photos/article/5995/144126603921.jpg?q=80&w=1974&auto=format&fit=fit" alt="[Интерьер венской кофейни]" className="w-full h-full object-cover object-center" />
           </div>
           <h3 className="text-2xl font-bold text-center mb-6">Венская кофейня (Нематериальное наследие ЮНЕСКО)</h3>
           <p className="text-center mb-4 max-w-3xl mx-auto">Это не просто место, а социальный институт. Атрибуты: мраморные столики, стулья Thonet, держатели газет (Zeitungsständер).</p>
@@ -127,4 +127,4 @@ const FoodPage = () => {
   );
 };
 
-export default FoodPage;
+export default React.memo(FoodPage);

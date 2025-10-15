@@ -9,7 +9,7 @@ const TransportPage = () => {
           пунктуальность и глубокую приверженность устойчивому развитию.</p>
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div className="card animated-card">
-            <img src="https://www.alpenverein.at/salzburg_wAssets/img/newsletter/NL-1-2022/klimaticket-salzburg-map.jpg?q=80&w=1974&auto=format&fit=crop" alt="[KlimaTicket карта]" className="w-full h-72 object-cover" />
+            <img loading="lazy" src="https://www.alpenverein.at/salzburg_wAssets/img/newsletter/NL-1-2022/klimaticket-salzburg-map.jpg?q=80&w=1974&auto=format&fit=crop" alt="[KlimaTicket карта]" className="w-full h-72 object-cover" />
             <div className="p-8">
               <h3 className="text-2xl font-bold mb-3">KlimaTicket (Климатический билет)</h3>
               <p className="text-slate-600 mb-4">Революционный проект, запущенный в октябре 2021 года. Это единый
@@ -21,7 +21,7 @@ const TransportPage = () => {
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://presse-oebb.at/Content/747422/cd4dce8d-9fa3-44a6-ab66-fa93eaeab727/1200/2400/.jpg?q=80&w=2070&auto=format&fit=fit"
+            <img loading="lazy" src="https://presse-oebb.at/Content/747422/cd4dce8d-9fa3-44a6-ab66-fa93eaeab727/1200/2400/.jpg?q=80&w=2070&auto=format&fit=fit"
               alt="[Изображение поезда ÖBB Railjet]" className="w-full h-72 object-cover" />
             <div className="p-6">
               <h3 className="text-2xl font-bold mb-3">ÖBB Railjet (RJ/RJX)</h3>
@@ -29,19 +29,19 @@ const TransportPage = () => {
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://protectourwinters.at/wp-content/uploads/2021/03/U-Bahnstation-%C2%A9-Wiener-Linien.jpg?q=80&w=1974&auto=format&fit=fit" alt="[Wiener Linien U‑Bahn]" className="w-full h-72 object-cover" />
+            <img loading="lazy" src="https://protectourwinters.at/wp-content/uploads/2021/03/U-Bahnstation-%C2%A9-Wiener-Linien.jpg?q=80&w=1974&auto=format&fit=fit" alt="[Wiener Linien U‑Bahn]" className="w-full h-72 object-cover" />
             <div className="p-8">
-              <h3 className="text-2xl font-bold mb-3">Wiener Linien — Jahreskarte €365</h3>
+              <h3 className="text-2xl font-bold mb-3">Wiener Linien – Jahreskarte €365</h3>
               <p className="text-slate-600">Годовой проездной на весь городской транспорт Вены: метро (U-Bahn),
                 трамваи, автобусы и S-Bahn в границах города. Модель «€1 в день» сделала ОТ сверхпопулярным
                 и стала прототипом для KlimaTicket.</p>
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://www.studentagencybus.com/u/images/News_pix3/News_pix4/westbahn(1).jpg?w=1200&h=1200&s=1?q=80&w=1974&auto=format&fit=fit" alt="[WESTbahn поезд]" className="w-full h-72 object-cover" />
+            <img loading="lazy" src="https://www.studentagencybus.com/u/images/News_pix3/News_pix4/westbahn(1).jpg?w=1200&h=1200&s=1?q=80&w=1974&auto=format&fit=fit" alt="[WESTbahn поезд]" className="w-full h-72 object-cover" />
             <div className="p-8">
-              <h3 className="text-2xl font-bold mb-3">WESTbahn — частный оператор</h3>
-              <p className="text-slate-600">Конкурент ÖBB на магистрали Западной Австрии (Вена — Зальцбург — Инсбрук).</p>
+              <h3 className="text-2xl font-bold mb-3">WESTbahn – частный оператор</h3>
+              <p className="text-slate-600">Конкурент ÖBB на магистрали Западной Австрии (Вена – Зальцбург – Инсбрук).</p>
               <ul className="text-slate-700 list-disc list-inside mt-3 space-y-1 text-sm">
                 <li>Совместимость с региональными версиями KlimaTicket</li>
                 <li>Розетки, Wi‑Fi, места для велосипедов</li>
@@ -49,9 +49,9 @@ const TransportPage = () => {
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://www.theflashpacker.net/wp-content/uploads/2024/10/railjet-train-1st-class-6.jpg?q=80&w=1974&auto=format&fit=fit" alt="[Railjet Business Class]" className="w-full h-72 object-cover" />
+            <img loading="lazy" src="https://www.theflashpacker.net/wp-content/uploads/2024/10/railjet-train-1st-class-6.jpg?q=80&w=1974&auto=format&fit=fit" alt="[Railjet Business Class]" className="w-full h-72 object-cover" />
             <div className="p-8">
-              <h3 className="text-2xl font-bold mb-3">Railjet — классы обслуживания</h3>
+              <h3 className="text-2xl font-bold mb-3">Railjet – классы обслуживания</h3>
               <ul className="text-slate-700 list-disc list-inside space-y-2">
                 <li><strong>Economy:</strong> удобные кресла, розетки, Wi‑Fi</li>
                 <li><strong>First:</strong> больше пространства, обслуживание у места</li>
@@ -65,4 +65,4 @@ const TransportPage = () => {
   );
 };
 
-export default TransportPage;
+export default React.memo(TransportPage);

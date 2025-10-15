@@ -1,0 +1,36 @@
+{
+    "statsCards": [
+        { "title": "Вена", "value": "2-е", "description": "место в мире по качеству жизни (Mercer, 2024), уступив Цюриху" },
+        { "title": "Индекс Счастья", "value": "14-е", "description": "место в мире (World Happiness Report, 2024)" },
+        { "title": "Безопасность", "value": "3-е", "description": "место в мире (Global Peace Index, 2025)" },
+        { "title": "Продолжительность жизни", "value": "82.37", "description": "года (прогноз 2025: ♀ 84.4, ♂ 79.8)" }
+    ],
+    "comparisonChartsData": [
+        { "id": "happinessChart", "title": "Топ стран по счастью" }
+    ],
+    "chartData": {
+        "obesityChart": {
+            "labels": ["Недостаточный вес", "Нормальный вес", "Избыточный вес", "Ожирение"],
+            "datasets": [{
+                "data": [2.9, 54.3, 31.7, 11.1],
+                "backgroundColor": ["#3b82f6", "#10b981", "#f97316", "#ef4444"]
+            }]
+        },
+        "gdpChart": {
+            "labels": ["Австрия", "Германия", "Швейцария", "ЕС (среднее)"],
+            "datasets": [{
+                "label": "ВВП на душу населения, €",
+                "data": [52500, 48700, 84000, 38400],
+                "backgroundColor": ["#3b82f6", "#4ade80", "#f59e0b", "#64748b"]
+            }]
+        },
+        "happinessChart": {
+            "labels": ["Австрия", "Финляндия", "Дания", "Швейцария", "Нидерланды"],
+            "datasets": [{
+                "label": "Индекс счастья",
+                "data": [7.2, 7.8, 7.6, 7.5, 7.4],
+                "backgroundColor": ["#3b82f6", "#22c55e", "#ef4444", "#f97316", "#f59e0b"]
+            }]
+        }
+    }
+}

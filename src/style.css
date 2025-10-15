@@ -139,34 +139,6 @@
    ========================================================================== */
 
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-dark);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Стили для главных заголовков секций */
-.section-title {
-    font-size: 2.25rem; /* 36px */
-    line-height: 2.5rem; /* 40px */
-    font-weight: 800;
-    color: var(--text-dark);
-    margin-bottom: 1.5rem; /* 24px */
-    text-align: center;
-    max-width: 56rem; /* 896px */
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.25;
-    letter-spacing: -0.025em;
-}
-@media (min-width: 768px) {
-    .section-title {
-        font-size: 3rem; /* 48px */
-        line-height: 1;
-    }
-}
-
 /* Стили для подзаголовков секций */
 .section-subtitle {
     font-size: 1.125rem; /* 18px */
@@ -201,32 +173,65 @@ body {
     transform: translateY(-0.5rem); /* -8px */
 }
 
+/* Стили для главных заголовков секций */
+.section-title {
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem; /* 24px */
+    text-align: center;
+    max-width: 56rem; /* 896px */
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+}
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 3rem; /* 48px */
+        line-height: 1;
+    }
+}
+
 /* Ссылки в основной навигации */
 .nav-link {
-    padding-left: 1rem; padding-right: 1rem;
-    padding-top: 0.5rem; padding-bottom: 0.5rem;
-    font-size: 1.05rem; /* Увеличен размер шрифта */
-    font-weight: 700; /* Жирное начертание */
-    color: var(--text-dark);
-    border-radius: 9999px;
+    padding: 0.25rem 0.75rem; /* Уменьшены отступы */
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark); /* Используем переменную для цвета текста */
+    border-radius: 99px;
     transition-property: color, background-color;
     transition-duration: 300ms;
 }
+
 .nav-link:hover {
-    background-color: #e2e8f0; /* slate-200 */
-    color: #0f172a; /* slate-900 */
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 1px solid #e2e8f0; /* slate-200 */
 }
 
 /* Активная ссылка в навигации */
 .nav-link.active {
-    background-color: #3b82f6; /* blue-500 */
-    color: #fff;
+    color: var(--primary-color);
+    position: relative;
+    border: 1px solid transparent; /* Добавляем прозрачную рамку для сохранения размера */
+    background-color: transparent;
 }
 .nav-link.active:hover {
-    background-color: #2563eb; /* blue-600 */
-    color: #fff;
+    background-color: #e2e8f0; /* slate-200 */
+    color: #0f172a; /* slate-900 */
 }
-
+/* Подчеркивание для активной ссылки */
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; /* Немного приподнял подчеркивание */
+    left: 0.75rem; /* Соответствует новому padding */
+    right: 0.75rem; /* Соответствует новому padding */
+    height: 2px;
+    background-color: var(--primary-color);
+}
 /* Отступы для секций и разделитель между ними */
 section {
     padding-top: 4rem; /* 64px */
@@ -275,15 +280,6 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('https://www.atorus.ru/sites/default/files/styles/head_carousel/public/2021-09/20308f.jpg.webp?itok=jNz4Qgod');
     background-size: cover;
-    background-position: center bottom;
-}
-
-/* Отдельный стиль для hero-секции на странице "Еда" (Кофейни) */
-.hero-food {
-    /* Другое фоновое изображение */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url('https://img.freepik.com/free-photo/tasty-cappuccino-in-a-cup-on-the-table_93675-134938.jpg?w=1380');
-    background-size: cover;
-    /* Выравнивание по нижнему краю */
     background-position: center bottom;
 }
 
@@ -341,15 +337,10 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
     /* Добавляем сдвиг при наведении для лучшего отклика */
     @apply bg-slate-100 dark:bg-slate-800 pl-6;
 }
+
 .mobile-nav-link.active {
     /* Более выразительный стиль для активной ссылки */
     @apply bg-blue-600 text-white dark:bg-blue-500 pl-6;
-}
-
-/* Дополнительные стили для контейнера ссылок в мобильном меню,
-   чтобы они корректно отображались после клонирования. */
-.mobile-nav-container {
-    @apply flex flex-col items-stretch space-y-2;
 }
 
 /* Кастомный скроллбар для бокового меню */
@@ -393,8 +384,8 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 .dot {
     width: 10px;
     height: 10px;
-    border-radius: 9999px;
-    background-color: var(--dot-inactive-bg); /* неактивная точка */
+    padding: 0;
+    background-color: var(--dot-inactive-bg);
     transition: background-color 300ms ease, transform 300ms ease;
     cursor: pointer;
 }
@@ -405,7 +396,7 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 
 /* Стиль для активной точки */
 .dot.active {
-    background-color: var(--dot-active-bg); /* активная точка */
+    background-color: var(--dot-active-bg);
     transform: scale(1.2);
 }
 
@@ -417,26 +408,12 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
     transition: background-color 300ms ease;
 }
 
-/* Кнопки навигации слайдера (стрелки) */
-.slider-arrow {
-    @apply bg-white/60 backdrop-blur-sm rounded-full w-10 h-10 flex items-center justify-center text-slate-800 shadow-lg transition-all duration-300 hover:bg-white hover:scale-110;
-    cursor: pointer;
+/* Кнопки навигации для ManualSlider */
+.slider-nav-button {
+    @apply px-4 py-2 rounded-full border bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold border-slate-300;
+    @apply dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100 dark:border-slate-600;
+    @apply transition-colors;
 }
-
-.dark .slider-arrow {
-    @apply bg-slate-800/50 text-slate-200 hover:bg-slate-700/80;
-}
-
-/* Стиль для заблокированной кнопки (применяется к <button disabled>) */
-/* Делаем кнопку серой, убираем тень и эффекты наведения */
-.slider-arrow:disabled {
-    @apply bg-slate-200 text-slate-400 shadow-none scale-100 cursor-not-allowed pointer-events-none;
-    /* Явно отменяем hover-эффекты для заблокированного состояния */
-    @apply hover:bg-slate-200 hover:scale-100;
-    /* Стили для темной темы в заблокированном состоянии */
-    @apply dark:bg-slate-800 dark:text-slate-600 dark:hover:bg-slate-800;
-}
-
 /* ==========================================================================
    Специфичные компоненты
    ========================================================================== */

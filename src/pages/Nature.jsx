@@ -1,7 +1,6 @@
 import React from 'react';
 import ManualSlider from '../components/ManualSlider';
-
-// TODO: Перенести логику авто-слайдера Гросглоккнер и чартов из app.js с помощью хуков
+import useAutoSlider from '../hooks/useAutoSlider';
 
 const parksSlidesData = [
   {
@@ -72,6 +71,15 @@ const parksSlidesData = [
 ];
 
 const NaturePage = () => {
+  const glocknerSlides = [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Grossglockner_from_SW.jpg/1280px-Grossglockner_from_SW.jpg?q=80&w=1964&auto=format&fit=crop",
+    "https://www.salzburg.info/deskline/infrastruktur/objekte/grossglockner-hochalpenstrasse_9427/image-thumb__664655__slider-main/Grossglockner%20Hochalpenstrasse-Edelwei%C3%9F-Spitze_9431.jpg",
+    "https://www.salzburg.info/deskline/infrastruktur/objekte/grossglockner-hochalpenstrasse_9427/image-thumb__664656__slider-main/Fuscher%20T%C3%B6rl_236123.webp",
+    "https://www.kaernten-top10.at/wp-content/uploads/2019/09/kaiser-franz-josef-hoehe-grossglockner-panoramastrasse.jpg",
+    "https://www.hello-salzburg.at/fileadmin/_processed_//c/3/csm_Grohag_17_RGB_Startbild_74a173b804.jpg"
+  ];
+  const { currentIndex: glocknerCurrentIndex, goToSlide: goToGlocknerSlide } = useAutoSlider(glocknerSlides.length, 4000);
+
   return (
     <main className="px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <section id="nature">
@@ -82,25 +90,26 @@ const NaturePage = () => {
 
         <div className="max-w-5xl mx-auto mb-24 animated-card">
           <div className="card">
-            <div className="glockner-slider relative w-full h-80 overflow-hidden">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Grossglockner_from_SW.jpg/1280px-Grossglockner_from_SW.jpg?q=80&w=1964&auto=format&fit=crop" alt="[Großglockner 1]" className="slide absolute inset-0 w-full h-full object-cover opacity-100" />
-              <img src="https://www.salzburg.info/deskline/infrastruktur/objekte/grossglockner-hochalpenstrasse_9427/image-thumb__664655__slider-main/Grossglockner%20Hochalpenstrasse-Edelwei%C3%9F-Spitze_9431.jpg" alt="[Großglockner 2]" className="slide absolute inset-0 w-full h-full object-cover opacity-0" />
-              <img src="https://www.salzburg.info/deskline/infrastruktur/objekte/grossglockner-hochalpenstrasse_9427/image-thumb__664656__slider-main/Fuscher%20T%C3%B6rl_236123.webp" alt="[Großglockner 3]" className="slide absolute inset-0 w-full h-full object-cover opacity-0" />
-              <img src="https://www.kaernten-top10.at/wp-content/uploads/2019/09/kaiser-franz-josef-hoehe-grossglockner-panoramastrasse.jpg" alt="[Großglockner 3]" className="slide absolute inset-0 w-full h-full object-cover opacity-0" />
-              <img src="https://www.hello-salzburg.at/fileadmin/_processed_//c/3/csm_Grohag_17_RGB_Startbild_74a173b804.jpg" alt="[Großglockner 3]" className="slide absolute inset-0 w-full h-full object-cover opacity-0" />
+            <div className="glockner-slider relative w-full h-96 overflow-hidden">
+              {glocknerSlides.map((src, index) => (
+                <img 
+                  key={src}
+                  loading="lazy" 
+                  src={src} 
+                  alt={`[Großglockner ${index + 1}]`} 
+                  className={`slide absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${glocknerCurrentIndex === index ? 'opacity-100' : 'opacity-0'}`} />
+              ))}
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 glockner-dots">
-                <span className="dot w-2.5 h-2.5 rounded-full active"></span>
-                <span className="dot w-2.5 h-2.5 rounded-full"></span>
-                <span className="dot w-2.5 h-2.5 rounded-full"></span>
-                <span className="dot w-2.5 h-2.5 rounded-full"></span>
-                <span className="dot w-2.5 h-2.5 rounded-full"></span>
+                {glocknerSlides.map((_, index) => (
+                  <button key={index} onClick={() => goToGlocknerSlide(index)} className={`dot w-2.5 h-2.5 rounded-full ${glocknerCurrentIndex === index ? 'active' : ''}`}></button>
+                ))}
               </div>
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold mb-3 text-slate-800">Großglockner</h3>
               <p className="text-slate-600 mb-4">Венец австрийских Альп, национальный символ и самая высокая точка
                 страны. К ее подножию ведет знаменитая панорамная дорога <strong
-                  className="text-slate-800">Großglockner Hochalpenstraße</strong> — шедевр инженерной мысли
+                  className="text-slate-800">Großglockner Hochalpenstraße</strong> – шедевр инженерной мысли
                 длиной 48 км с 36 крутыми поворотами, поднимающийся на высоту 2573 м на смотровой площадке
                 Эдельвайсшпитце. С 2016 года дорога является кандидатом на включение в список всемирного
                 наследия ЮНЕСКО.</p>
@@ -133,8 +142,8 @@ const NaturePage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24">
           <div className="card animated-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Eisriesenwelt_Werfen_Austria_02.jpg/1280px-Eisriesenwelt_Werfen_Austria_02.jpg?q=80&w=1964&auto=format&fit=crop"
-              alt="[Изображение ледяной пещеры Айсризенвельт]" className="w-full h-56 object-cover" />
+            <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Eisriesenwelt_Werfen_Austria_02.jpg/1280px-Eisriesenwelt_Werfen_Austria_02.jpg?q=80&w=1964&auto=format&fit=crop" alt="[Изображение ледяной пещеры Айсризенвельт]"
+              className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="text-xl font-bold mb-2">Eisriesenwelt (Верфен)</h3>
               <p className="text-slate-600">Крупнейшая в мире ледяная пещера (42 км).</p>
@@ -149,8 +158,8 @@ const NaturePage = () => {
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Gr%C3%BCnerSeeAgainstMe%C3%9Fnerin.jpg/1280px-Gr%C3%BCnerSeeAgainstMe%C3%9Fnerin.jpg"
-              alt="[Изображение Зелёного озера]" className="w-full h-56 object-cover" />
+            <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Gr%C3%BCnerSeeAgainstMe%C3%9Fnerin.jpg/1280px-Gr%C3%BCnerSeeAgainstMe%C3%9Fnerin.jpg" alt="[Изображение Зелёного озера]"
+              className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="text-xl font-bold mb-2">Grüner See (Штирия)</h3>
               <p className="text-slate-600">Весной затапливает прилегающий парк, создавая изумрудный подводный мир.</p>
@@ -165,8 +174,8 @@ const NaturePage = () => {
             </div>
           </div>
           <div className="card animated-card">
-            <img src="https://nurli.ru/upload/cssinliner_webp/iblock/afb/afb125a9af0e289146b6ceda0cdf2a1e.webp?q=80&w=1974&auto=format&fit=crop"
-              alt="[Стакан чистой воды на фоне гор]" className="w-full h-56 object-cover" />
+            <img loading="lazy" src="https://nurli.ru/upload/cssinliner_webp/iblock/afb/afb125a9af0e289146b6ceda0cdf2a1e.webp?q=80&w=1974&auto=format&fit=crop" alt="[Стакан чистой воды на фоне гор]"
+              className="w-full h-56 object-cover" />
             <div className="p-6">
               <h3 className="text-xl font-bold mb-2">Питьевая вода</h3>
               <p className="text-slate-600">Качество воды из альпийских источников настолько высоко, что она
@@ -177,27 +186,29 @@ const NaturePage = () => {
 
         <div className="mt-24">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="card p-6 flex flex-col justify-center items-center animated-card">
-              <h3 className="text-xl font-bold mb-4 text-center">Энергетика — «Зеленая Батарея»</h3>
+            <div className="card p-6 animated-card flex flex-col text-center"> 
+              <h3 className="text-xl font-bold mb-4">Энергетика – «Зеленая Батарея»</h3>
               <p className="text-center text-sm mb-4">Доля возобновляемых источников в выработке электроэнергии
-                составляет около <strong className="text-lg">88%</strong> (2024 г.). Гидроэнергетика (54–67%) —
+                составляет около <strong className="text-lg">88%</strong> (2024 г.). Гидроэнергетика (54–67%) –
                 основа энергетической независимости страны.</p>
-              <canvas id="energyChart"></canvas>
-            </div>
-            <div className="card p-6 animated-card flex flex-col text-center">
-              <h3 className="text-xl font-bold mb-2 text-slate-800">130+ гидроэлектростанций</h3>
-              <p className="text-slate-600">Альпы работают как «аккумулятор» страны: более 130 ГЭС обеспечивают
-                значительную часть чистой энергии и гибкость энергосистемы.</p>
-              <div className="mt-4 relative flex-1 rounded-lg overflow-hidden">
-                <img loading="lazy" src="https://www.euro-coins.info/images/36bc114d-4813-4574-948f-517392906ae6_636_2.jpg" alt="[Символ гидроэнергетики Австрии]" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="mt-auto relative rounded-lg overflow-hidden h-[28rem]">
+                <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Lac_Montsalvens.jpg/960px-Lac_Montsalvens.jpg" alt="Гидроэлектростанция в Австрийских Альпах" className="absolute inset-0 w-full h-full object-cover object-center" />
               </div>
             </div>
             <div className="card p-6 animated-card flex flex-col text-center">
-              <h3 className="text-xl font-bold mb-2 text-slate-800">Krimmler Wasserfälle</h3>
+              <h3 className="text-xl font-bold mb-2">130+ гидроэлектростанций</h3>
+              <p className="text-slate-600">Альпы работают как «аккумулятор» страны: более 130 ГЭС обеспечивают
+                значительную часть чистой энергии и гибкость энергосистемы.</p>
+              <div className="mt-auto relative rounded-lg overflow-hidden h-[28rem]">
+                <img loading="lazy" src="https://www.euro-coins.info/images/36bc114d-4813-4574-948f-517392906ae6_636_2.jpg" alt="[Символ гидроэнергетики Австрии]" className="absolute inset-0 w-full h-full object-cover object-center" />
+              </div>
+            </div>
+            <div className="card p-6 animated-card flex flex-col text-center">
+              <h3 className="text-xl font-bold mb-2">Krimmler Wasserfälle</h3>
               <p className="text-slate-600">Один из символов мощности воды в парке Hoher Tauern: каскад из трёх
                 ступеней общей высотой около 380 метров.</p>
-              <div className="mt-4 relative flex-1 rounded-lg overflow-hidden">
-                <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Krimmler_wasserfaelle_20040823.jpg/800px-Krimmler_wasserfaelle_20040823.jpg" alt="[Krimmler Wasserfälle]" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="mt-auto relative rounded-lg overflow-hidden h-[28rem]">
+                <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Krimmler_wasserfaelle_20040823.jpg/800px-Krimmler_wasserfaelle_20040823.jpg" alt="[Krimmler Wasserfälle]" className="absolute inset-0 w-full h-full object-cover object-center" />
               </div>
             </div>
           </div>
@@ -207,4 +218,4 @@ const NaturePage = () => {
   );
 };
 
-export default NaturePage;
+export default React.memo(NaturePage);
