@@ -37,6 +37,7 @@ const EconomyPage = () => {
                 type="bar"
                 chartId="gdpChart"
                 data={gdpChartData.data}
+                colorize={{ lowerIsBetter: false }}
                 options={{
                   indexAxis: 'y', // Возвращаем горизонтальный вид для лучшей читаемости
                   responsive: true,
