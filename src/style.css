@@ -265,8 +265,8 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 
 .timeline-grid-container {
     display: grid;
-    grid-template-columns: auto 2rem 1fr;
-    gap: 0 1rem; /* No row-gap, 1rem column-gap */
+    grid-template-columns: auto 4rem 1fr; /* Уменьшили средний столбец с 8rem до 4rem */
+    gap: 0 0.75rem; /* Уменьшили gap с 1.5rem до 0.75rem */
 }
 
 .timeline-line {
@@ -463,4 +463,63 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
     @apply rounded-lg; /* 8px */
     /* Гарантируем, что изображение не выйдет за пределы скругленных углов */
     overflow: hidden;
+}
+
+.timeline-grid-container {
+    display: grid;
+    grid-template-columns: auto 8rem 1fr; /* Увеличили средний столбец с 2rem до 8rem */
+    gap: 0 1.5rem; /* Увеличили gap между колонками */
+}
+
+.timeline-line {
+    width: 4px;
+    background-color: #e5e7eb; /* slate-200 */
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    top: 0; /* Начинаем с самого верха */
+}
+.dark .timeline-line {
+    background-color: #334155;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 50%;
+}
+
+.timeline-dot-major {
+    top: 0rem; /* Выравниваем по верху */
+    width: 100px; /* Увеличенный размер */
+    height: 100px; /* Увеличенный размер */
+    border: 4px solid var(--primary-color);
+    background-color: white; /* Белый фон, если нет изображения */
+    overflow: hidden; /* Чтобы изображение не выходило за пределы круга */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-dot-minor {
+    top: 0.8rem; /* ~13px to align with text */
+    width: 8px;
+    height: 8px;
+    background-color: #94a3b8; /* slate-400 */
+    border: 2px solid white;
+}
+
+/* Стили для изображения внутри кружка */
+.timeline-dot-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Темная тема для кружка */
+.dark .timeline-dot-major {
+    background-color: #1f2937; /* Темный фон для темной темы если нет изображения */
 }

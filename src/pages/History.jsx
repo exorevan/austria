@@ -9,7 +9,7 @@ const HistoryPage = () => {
       <section id="history">
         <div className="text-center mb-16">
           <h2 className="section-title">Ключевые эпохи истории</h2>
-          <p className="section-subtitle">История Австрии – это сага о превращении пограничной территории в центр
+          <p className="section-subtitle">История Австрии — это сага о превращении пограничной территории в центр
             великой империи и ее трансформации в процветающую нейтральную республику. Население на 2025 год:
             <strong> ~9.2 миллиона человек</strong>.</p>
         </div>
@@ -17,18 +17,34 @@ const HistoryPage = () => {
           {timelineData.map((item, index) => (
             <React.Fragment key={index}>
               {/* Год */}
-              <div className="text-right pr-8 animated-card">
-                <strong className={`${item.type === 'major' ? 'text-blue-600 text-xl' : 'text-slate-500 dark:text-slate-400'}`}>
-                {item.year}
+              <div className="text-right pr-4 animated-card">
+                <strong 
+                  className={`${
+                    item.type === 'major' 
+                      ? 'text-blue-600 text-xl inline-block pt-[50px]' 
+                      : 'text-slate-500 dark:text-slate-400'
+                  }`}
+                >
+                  {item.year}
                 </strong>
               </div>
               {/* Линия и точка */}
               <div className="relative flex justify-center">
                 <div className={`timeline-line ${index === timelineData.length - 1 ? 'h-1/2' : 'h-full'}`}></div>
-                <div className={`timeline-dot ${item.type === 'major' ? 'timeline-dot-major' : 'timeline-dot-minor'}`}></div>
+                <div className={`timeline-dot ${item.type === 'major' ? 'timeline-dot-major' : 'timeline-dot-minor'}`}>
+                  {/* Фото внутри кружка для major событий */}
+                  {item.type === 'major' && item.imgSrc && (
+                    <img 
+                      loading="lazy"
+                      src={item.imgSrc} 
+                      alt={item.imgAlt}
+                      className="timeline-dot-image"
+                    />
+                  )}
+                </div>
               </div>
               {/* Контент */}
-              <div className={`pb-16 animated-card`}>
+              <div className="pb-16 pl-2 animated-card">
                 <h4 className={`font-bold my-2 ${item.type === 'major' ? 'text-2xl' : 'text-xl'}`}>{item.title}</h4>
                 <p className={item.type === 'minor' ? 'text-sm' : ''} dangerouslySetInnerHTML={{ __html: item.description }} />
                 
@@ -39,8 +55,8 @@ const HistoryPage = () => {
                     ))}
                   </ul>
                 )}
-  
-                {item.imgSrc && (
+                
+                {item.type === 'minor' && item.imgSrc && (
                   <img 
                     loading="lazy"
                     src={item.imgSrc} 
