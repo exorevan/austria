@@ -1,8 +1,13 @@
 import React from 'react';
 import ChartWrapper from '../components/ChartWrapper';
-import economyPageData from '../data/economyPageData.json';
+import economyPageData from '../data/economyPage.json';
 
-const { statsCards, keyIndustries, economicProfile, gdpChartData } = economyPageData;
+const { 
+  statsCards,
+  keyIndustries, 
+  economicProfile, 
+  gdpChartData 
+} = economyPageData;
 const EconomyPage = () => {
   return (
     <main className="px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -31,7 +36,7 @@ const EconomyPage = () => {
             </ul>
           </div>
           <div className="card lg:col-span-1 p-8 animated-card">
-            <h3 className="text-2xl font-bold mb-4 text-center">Сравнение ВВП на душу населения в ЕС (2024)</h3>
+            <h3 className="text-2xl font-bold mb-4 text-center">Сравнение ВВП на душу населения (2024)</h3>
             <div className="relative h-96">
               <ChartWrapper
                 type="bar"

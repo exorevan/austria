@@ -1,6 +1,6 @@
 import React from 'react';
 import ChartWrapper from '../components/ChartWrapper';
-import miscPageData from '../data/miscPageData.json';
+import miscPageData from '../data/miscPage.json';
 
 const { statsCards, comparisonChartsData, chartData: miscChartData, societyInfo } = miscPageData;
 const MiscPage = () => {
@@ -34,16 +34,17 @@ const MiscPage = () => {
             <p className="text-center text-sm mb-4 text-slate-500">(Данные Статистического управления Австрии за
               2019)</p>
             <div className="relative h-64">
-              <ChartWrapper // Обратите внимание, что здесь используется chartData, а не miscChartData
+              <ChartWrapper
                 type="doughnut"
-                chartId="obesityChart"
                 data={miscChartData.obesityChart.data}
                 options={{
                   responsive: true,
                   maintainAspectRatio: false,
                   cutout: '60%',
                   plugins: { legend: { display: true, position: 'bottom' } }
-                }} />
+                }}
+                chartId="obesityChart"
+              />
             </div>
           </div>
         </div>
@@ -51,15 +52,15 @@ const MiscPage = () => {
         <div className="grid md:grid-cols-2 gap-8 mt-12">
           {comparisonChartsData.map((chart) => {
             return (
-              <div key={chart.id} className="card p-6 animated-card">
-                <h3 className="text-lg font-semibold mb-2 text-center">{chart.title}</h3>
+              <div key={chart.chartId} className="card p-6 animated-card">
+                <h3 className="text-lg font-semibold mb-2 text-center">{chart.chartTitle}</h3>
                 <div className="relative h-96">
                   <ChartWrapper
                     type="bar"
-                    chartId={chart.id}
-                    data={miscChartData[chart.id].data}
+                    chartId={chart.chartId}
+                    data={miscChartData[chart.chartId].data}
                     options={{ responsive: true, maintainAspectRatio: false }}
-                    colorize={{ lowerIsBetter: chart.lowerIsBetter }}
+                    colorize={{ isLowerBetter: chart.isLowerBetter }}
                   />
                 </div>
               </div>

@@ -9,16 +9,18 @@ import {
 /**
  * Генерирует массив цветов для графика на основе значений данных (от красного к зеленому).
  * @param {number[]} data - Массив числовых значений.
- * @param {boolean} [lowerIsBetter=false] - Если true, меньшие значения получают "лучшие" (зеленые) цвета.
+ * @param {boolean} [isLowerBetter=false] - Если true, меньшие значения получают "лучшие" (зеленые) цвета.
  * @returns {string[]} Массив HSL цветов.
  */
-const generateChartColors = (data, lowerIsBetter = false) => {
+const generateColorGradient = (data, isLowerBetter = false) => {
   const min = Math.min(...data);
   const max = Math.max(...data);
   return data.map(value => {
-    const ratio = (max - min) === 0 ? 1 : (value - min) / (max - min);
-    const hue = (lowerIsBetter ? 1 - ratio : ratio) * 120; // 0 (красный) до 120 (зеленый)
-    return `hsl(${hue}, 80%, 50%)`;
+    const normalizedRatio = (max - min) === 0 
+      ? 1 
+      : (value - min) / (max - min);
+    const hueAngle = (isLowerBetter ? 1 - normalizedRatio : normalizedRatio) * 120;
+    return `hsl(${hueAngle}, 80%, 50%)`;
   });
 };
 
@@ -53,7 +55,7 @@ const ChartWrapper = ({ type, data, options, chartId, colorize }) => {
       // Клонируем данные, чтобы не мутировать props
       finalData = JSON.parse(JSON.stringify(data));
       const dataset = finalData.datasets[0];
-      dataset.backgroundColor = generateChartColors(dataset.data, colorize.lowerIsBetter);
+      dataset.backgroundColor = generateColorGradient(dataset.data, colorize.isLowerBetter);
     }
 
 
@@ -93,7 +95,7 @@ const ChartWrapper = ({ type, data, options, chartId, colorize }) => {
       }
     };
     // Зависимости: перерисовываем при смене данных, опций или темы
-  }, [type, data, options, colorize, document.documentElement.classList.contains('dark')]);
+  }, [document.documentElement.classList.contains('dark')]);
 
   return <canvas ref={canvasRef} id={chartId}></canvas>;
 };

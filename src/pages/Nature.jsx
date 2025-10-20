@@ -78,7 +78,7 @@ const NaturePage = () => {
     "https://www.kaernten-top10.at/wp-content/uploads/2019/09/kaiser-franz-josef-hoehe-grossglockner-panoramastrasse.jpg",
     "https://www.hello-salzburg.at/fileadmin/_processed_//c/3/csm_Grohag_17_RGB_Startbild_74a173b804.jpg"
   ];
-  const { currentIndex: glocknerCurrentIndex, goToSlide: goToGlocknerSlide } = useAutoSlider(glocknerSlides.length, 4000);
+  const { activeSlideIndex: glocknerCurrentIndex, navigateToSlide: goToGlocknerSlide } = useAutoSlider(glocknerSlides.length, 4000);
 
   return (
     <main className="px-5 sm:px-6 lg:px-8 max-w-7xl mx-auto">

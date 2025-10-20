@@ -17,10 +17,10 @@ const useCardAnimation = () => {
       });
     }, { threshold: 0.1 });
 
-    const animatedCards = document.querySelectorAll('.animated-card');
-    animatedCards.forEach(card => observer.observe(card));
+    const elementsToAnimate = document.querySelectorAll('.animated-card');
+    elementsToAnimate.forEach(card => observer.observe(card));
 
-    return () => animatedCards.forEach(card => observer.unobserve(card));
+    return () => elementsToAnimate.forEach(card => observer.unobserve(card));
   }, [location]); // Перезапускаем эффект при смене URL
 };
 

@@ -5,28 +5,28 @@ import MobileMenu from './components/SideMenu';
 import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import AppRoutes from './AppRoutes';
-import useCardAnimation from './hooks/useCardAnimation';
+import useCardAnimation from './hooks/useScrollAnimation';
 
 /**
  * Компонент, который отслеживает смену URL и запускает хук анимации.
  * Это нужно, чтобы анимация карточек перезапускалась при переходе на новую страницу.
  */
-const AnimationController = () => {
-  useCardAnimation(); // Хук теперь сам получает location
-  return null; // Этот компонент ничего не рендерит
+const ScrollAnimationTrigger = () => {
+  useCardAnimation();
+  return null;
 };
 
 function App() {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const openMenu = () => setMenuOpen(true);
-  const closeMenu = () => setMenuOpen(false);
+  const openMobileMenu  = () => setMobileMenuOpen(true);
+  const closeMobileMenu = () => setMobileMenuOpen(false);
   
   return (
     <div className="flex flex-col min-h-screen">
-      <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
-      <Header onMenuOpen={openMenu} />
-      <AnimationController />
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
+      <Header onMenuOpen={openMobileMenu } />
+      <ScrollAnimationTrigger />
 
       <div className="flex-grow">
         <AppRoutes />

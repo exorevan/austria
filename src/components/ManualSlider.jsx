@@ -2,11 +2,11 @@ import React from 'react';
 import useManualSlider from '../hooks/useManualSlider';
 
 const ManualSlider = ({ slides, title }) => {
-  const { currentIndex, goToPrevious, goToNext, goToSlide } = useManualSlider(slides.length);
+  const { activeSlideIndex, navigateToPrevious, navigateToNext, navigateToSlide } = useManualSlider(slides.length);
 
   // Динамический стиль для сдвига слайдов
   const slidesWrapperStyle = {
-    transform: `translateX(-${currentIndex * 100}%)`,
+    transform: `translateX(-${activeSlideIndex * 100}%)`,
   };
 
   return (
@@ -30,13 +30,13 @@ const ManualSlider = ({ slides, title }) => {
         </div>
         {/* Навигация */}
         <div className="flex items-center justify-between p-4">
-          <button onClick={goToPrevious} className="px-4 py-1.5 rounded-full bg-slate-500 hover:bg-slate-600 text-white font-semibold transition-colors dark:bg-slate-600 dark:hover:bg-slate-500" aria-label="Предыдущий слайд">Назад</button>
+          <button onClick={navigateToPrevious} className="px-4 py-1.5 rounded-full bg-slate-500 hover:bg-slate-600 text-white font-semibold transition-colors dark:bg-slate-600 dark:hover:bg-slate-500" aria-label="Предыдущий слайд">Назад</button>
           <div className="flex gap-2">
             {slides.map((_, slideIndex) => (
-              <button key={slideIndex} onClick={() => goToSlide(slideIndex)} className={`dot ${currentIndex === slideIndex ? 'active' : ''}`} aria-label={`Перейти к слайду ${slideIndex + 1}`}></button>
+              <button key={slideIndex} onClick={() => navigateToSlide(slideIndex)} className={`dot ${activeSlideIndex === slideIndex ? 'active' : ''}`} aria-label={`Перейти к слайду ${slideIndex + 1}`}></button>
             ))}
           </div>
-          <button onClick={goToNext} className="px-4 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors" aria-label="Следующий слайд">Вперёд</button>
+          <button onClick={navigateToNext} className="px-4 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors" aria-label="Следующий слайд">Вперёд</button>
         </div>
       </div>
     </div>

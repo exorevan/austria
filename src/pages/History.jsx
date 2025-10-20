@@ -1,5 +1,5 @@
 import React from 'react';
-import historyPageData from '../data/historyPageData.json';
+import historyPageData from '../data/historyPage.json';
 
 const { timelineData } = historyPageData;
 

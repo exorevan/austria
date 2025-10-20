@@ -212,18 +212,18 @@
 }
 
 /* Активная ссылка в навигации */
-.nav-link.active {
+.nav-link--active {
     color: var(--primary-color);
     position: relative;
     border: 1px solid transparent; /* Добавляем прозрачную рамку для сохранения размера */
     background-color: transparent;
 }
-.nav-link.active:hover {
+.nav-link--active:hover {
     background-color: #e2e8f0; /* slate-200 */
     color: #0f172a; /* slate-900 */
 }
 /* Подчеркивание для активной ссылки */
-.nav-link.active::after {
+.nav-link--active::after {
     content: '';
     position: absolute;
     bottom: 2px; /* Немного приподнял подчеркивание */
@@ -261,12 +261,6 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 .animated-card.visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-.timeline-grid-container {
-    display: grid;
-    grid-template-columns: auto 4rem 1fr; /* Уменьшили средний столбец с 8rem до 4rem */
-    gap: 0 0.75rem; /* Уменьшили gap с 1.5rem до 0.75rem */
 }
 
 .timeline-line {
@@ -366,7 +360,7 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
     @apply bg-slate-100 dark:bg-slate-800 pl-6;
 }
 
-.mobile-nav-link.active {
+.mobile-nav-link--active {
     /* Более выразительный стиль для активной ссылки */
     @apply bg-blue-600 text-white dark:bg-blue-500 pl-6;
 }
@@ -408,32 +402,50 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
     will-change: transform;
 }
 
-/* Базовый стиль для точки-индикатора */
 .dot {
+    position: relative;
     width: 10px;
     height: 10px;
-    padding: 0;
+    border-radius: 50%; /* Делаем круглыми */
     background-color: var(--dot-inactive-bg);
-    transition: background-color 300ms ease, transform 300ms ease;
+    transition: all 300ms ease;
     cursor: pointer;
+    padding: 0;
+    border: none;
+    opacity: 0.8; /* Делаем чуть более непрозрачными */
 }
 
 .dot:hover {
     transform: scale(1.2);
+    opacity: 1;
 }
 
-/* Стиль для активной точки */
+/* Активная точка */
 .dot.active {
-    background-color: var(--dot-active-bg);
     transform: scale(1.2);
+    opacity: 1;
 }
 
-/* Автоматический слайдер (Гросглокнер): плавная смена прозрачности */
-.glockner-slider .slide {
-    transition: opacity 700ms ease-in-out;
+/* Синяя обводка для активной точки по всему кругу */
+.dot.active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-left-color: var(--dot-active-bg);
+    border-top-color: var(--dot-active-bg);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
-.glockner-slider .dot {
-    transition: background-color 300ms ease;
+
+/* Темная тема */
+.dark .dot.active::after {
+    border-left-color: #3b82f6;
+    border-top-color: #3b82f6;
 }
 
 /* Кнопки навигации для ManualSlider */
