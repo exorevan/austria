@@ -21,7 +21,7 @@ const HistoryPage = () => {
                 <strong 
                   className={`${
                     item.type === 'major' 
-                      ? 'text-blue-600 text-xl inline-block pt-[50px]' 
+                      ? 'text-blue-600 text-xl inline-block pt-[30px]' 
                       : 'text-slate-500 dark:text-slate-400'
                   }`}
                 >
@@ -31,7 +31,7 @@ const HistoryPage = () => {
               {/* Линия и точка */}
               <div className="relative flex justify-center">
                 <div className={`timeline-line ${index === timelineData.length - 1 ? 'h-1/2' : 'h-full'}`}></div>
-                <div className={`timeline-dot ${item.type === 'major' ? 'timeline-dot-major' : 'timeline-dot-minor'}`}>
+                <div className={`timeline-dot ${item.type === 'major' ? 'timeline-dot-major variant-large' : 'timeline-dot-minor'}`}>
                   {/* Фото внутри кружка для major событий */}
                   {item.type === 'major' && item.imgSrc && (
                     <img 
@@ -44,7 +44,7 @@ const HistoryPage = () => {
                 </div>
               </div>
               {/* Контент */}
-              <div className="pb-16 pl-2 animated-card">
+              <div className={`pb-16 pl-2 animated-card ${item.type === 'minor' ? '-mt-2' : ''}`}> 
                 <h4 className={`font-bold my-2 ${item.type === 'major' ? 'text-2xl' : 'text-xl'}`}>{item.title}</h4>
                 <p className={item.type === 'minor' ? 'text-sm' : ''} dangerouslySetInnerHTML={{ __html: item.description }} />
                 

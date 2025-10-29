@@ -60,3 +60,18 @@
 
 .slider-image { border-radius: 0.5rem; overflow: hidden; }
 
+/* Глобально убираем синюю подсветку фокуса у кнопок и ссылок */
+button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible,
+[role="button"]:focus,
+[role="button"]:focus-visible,
+.btn:focus,
+.btn:focus-visible,
+.nav-link:focus,
+.nav-link:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
