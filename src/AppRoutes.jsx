@@ -10,6 +10,7 @@ import FoodPage from './pages/Food';
 import HistoryPage from './pages/History';
 import PeoplePage from './pages/People';
 import MiscPage from './pages/Misc';
+import NotFoundPage from './pages/NotFoundPage';
 
 const AppRoutes = () => {
   return (
@@ -24,8 +25,8 @@ const AppRoutes = () => {
       <Route path="/history" element={<HistoryPage />} />
       <Route path="/people" element={<PeoplePage />} />
       <Route path="/misc" element={<MiscPage />} />
-      {/* Можно добавить страницу 404 */}
-      {/* <Route path="*" element={<NotFoundPage />} /> */}
+      <Route path="/404" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

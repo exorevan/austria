@@ -1,0 +1,58 @@
+/* Слайды и точки */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.parks-slider .slides-wrapper { will-change: transform; }
+
+.dot {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--dot-inactive-bg);
+    transition: all 300ms ease;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    opacity: 0.8;
+}
+.dot:hover { transform: scale(1.2); opacity: 1; }
+.dot.active { transform: scale(1.2); opacity: 1; }
+.dot.active::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-left-color: var(--dot-active-bg);
+    border-top-color: var(--dot-active-bg);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.dark .dot.active::after { border-left-color: #3b82f6; border-top-color: #3b82f6; }
+
+/* Кнопки навигации слайдера */
+.slider-nav-button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 9999px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #cbd5e1;
+    background-color: #e2e8f0;
+    color: #1f2937;
+    font-weight: 600;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+.slider-nav-button:hover { background-color: #cbd5e1; }
+.dark .slider-nav-button { background-color: #334155; color: #f1f5f9; border-color: #475569; }
+.dark .slider-nav-button:hover { background-color: #475569; }
+

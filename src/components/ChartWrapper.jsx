@@ -61,39 +61,56 @@ const ChartWrapper = ({ type, data, options, chartId, colorize }) => {
     }
 
     let finalData = data;
+    // Клонируем данные, чтобы не мутировать props (если нужно применять изменения)
+    const needsCloning = colorize || (options?.datasets);
+    if (needsCloning) {
+      finalData = JSON.parse(JSON.stringify(data));
+    }
+    
     // Если передан prop `colorize`, генерируем цвета
     if (colorize && finalData.datasets && finalData.datasets[0]) {
-      // Клонируем данные, чтобы не мутировать props
-      finalData = JSON.parse(JSON.stringify(data));
       const dataset = finalData.datasets[0];
       dataset.backgroundColor = generateColorGradient(dataset.data, colorize.isLowerBetter);
     }
+    
+    // Применяем опции datasets к каждому датасету (например, для bar chart)
+    if (options?.datasets && finalData.datasets) {
+      Object.keys(options.datasets).forEach(datasetType => {
+        const datasetOptions = options.datasets[datasetType];
+        finalData.datasets.forEach(dataset => {
+          Object.assign(dataset, datasetOptions);
+        });
+      });
+    }
 
 
+    // Создаем финальные опции, исключая datasets (они уже применены к датасетам)
+    const { datasets, ...restOptions } = options || {};
+    
     // Создаем новый график
     chartRef.current = new Chart(canvas, {
       type,
       data: finalData,
       options: {
-        ...options,
+        ...restOptions,
         // Динамически переопределяем цвета для всех осей, которые есть в графике
-        scales: Object.keys((options && options.scales) || {}).reduce((acc, key) => {
+        scales: Object.keys((restOptions && restOptions.scales) || {}).reduce((acc, key) => {
           acc[key] = {
-            ...options.scales[key],
+            ...restOptions.scales[key],
             grid: {
-              ...options.scales[key]?.grid,
+              ...restOptions.scales[key]?.grid,
               color: gridColor,
             },
             ticks: {
-              ...options.scales[key]?.ticks,
+              ...restOptions.scales[key]?.ticks,
               color: textColor,
             },
           };
           return acc;
         }, {}),
         plugins: {
-          ...options?.plugins,
-          legend: { ...options?.plugins?.legend, labels: { ...options?.plugins?.legend?.labels, color: textColor } },
+          ...restOptions?.plugins,
+          legend: { ...restOptions?.plugins?.legend, labels: { ...restOptions?.plugins?.legend?.labels, color: textColor } },
         },
       },
     });

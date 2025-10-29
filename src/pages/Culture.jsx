@@ -14,9 +14,9 @@ const CulturePage = () => {
             <img loading="lazy" src="https://ethnomir.ru/upload/medialibrary/d52/krampus1140.jpg?q=80&w=1964&auto=format&fit=fit"
               alt="[Изображение Крампуса]" className="w-full h-80 object-cover" />
             <div className="p-8">
-              <h3 className="text-2xl font-bold mb-3">Крампус и Перхтен</h3>
+              <h3 className="text-2xl font-bold mb-3">Krampus und Perchten</h3>
               <p className="text-slate-600">Древние альпийские традиции с дохристианскими корнями. Кульминация –
-                шествия <strong className="text-slate-800">Krampuslauf</strong> 5-6 декабря: рогатые существа
+                шествия <strong className="text-slate-800">Krampuslauf</strong> 5-6 dezember: рогатые существа
                 наказывают непослушных детей. Несмотря на попытки запрета в прошлом, сегодня традиция
                 переживает мощное возрождение.</p>
             </div>
@@ -33,10 +33,10 @@ const CulturePage = () => {
             <img loading="lazy" src="https://magazineart.art/wp-content/uploads/opernball_2019_117295-c-michael-poehn.jpg?q=80&w=1965&auto=format&fit=fit"
               alt="[Изображение Венского оперного бала]" className="w-full h-80 object-cover" />
             <div className="p-8">
-              <h3 className="text-2xl font-bold mb-3">Венский Бальный Сезон</h3>
+              <h3 className="text-2xl font-bold mb-3">Wiener Ballsaison</h3>
               <p className="text-slate-600">Прямое наследие двора Габсбургов. Более 450 балов в Вене с ноября по
-                февраль. Вершина – <strong className="text-slate-800">Венский оперный бал</strong> со строжайшим
-                дресс-кодом: черный фрак (Frack) с белой бабочкой для мужчин и длинное платье для женщин
+                февраль. Вершина – <strong className="text-slate-800">Wiener Opernball</strong> со строжайшим
+                дресс-кодом: черный frack с белой бабочкой für Herren и длинное платье für Frauen
                 (белый цвет – только для дебютанток).</p>
             </div>
           </div>

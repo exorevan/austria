@@ -1,0 +1,12 @@
+/* Кнопка переключения темы */
+.theme-toggle-button {
+    margin-left: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+.dark .theme-toggle-button { background-color: #334155; color: #f1f5f9; }
+

@@ -7,7 +7,7 @@ const Header = ({ onMenuOpen }) => {
   return (
     <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg shadow-sm sticky top-0 z-30 header-fade">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link to="/" className="text-xl font-bold text-slate-100 dark:text-slate-100 shrink-0">Austria Guide</Link>
+        <Link to="/" className="austria-guide-link text-xl font-bold text-slate-100 dark:text-slate-100 shrink-0">Austria Guide</Link>
         <nav id="desktop-menu" className="hidden lg:flex items-center gap-1">
           {navLinksData.map(link => (
             <NavLink

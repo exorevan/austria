@@ -1,0 +1,83 @@
+/* Шапка сайта */
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    .header-fade {
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
+}
+
+.header-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+.dark .header-title { color: #f1f5f9; }
+
+/* Чуть приподнимаем интерактивные элементы в шапке */
+header .nav-link,
+header .theme-toggle-button,
+header button { transform: translateY(-2px); }
+
+/* Убираем свечение/обводку при hover/focus у ссылок и кнопок */
+header .nav-link,
+header .nav-link:hover,
+header .nav-link:focus,
+header .nav-link:focus-visible,
+header button,
+header button:hover,
+header button:focus,
+header button:focus-visible {
+    box-shadow: none;
+}
+
+/* Цвет ссылок в шапке одинаков для тем/состояний hover */
+header .nav-link { color: #f1f5f9; }
+header .nav-link:hover { 
+    color: #ffffff; 
+    background-color: #3b82f6;
+    border: 1px solid transparent;
+}
+/* Для активной ссылки в шапке при наведении используем синий фон */
+header .nav-link.nav-link--active:hover {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: 1px solid transparent;
+}
+/* Стиль для кнопки Austria Guide - градиент флага Австрии на тексте при hover */
+header .austria-guide-link {
+    transition: background-image 0.2s, -webkit-background-clip 0.2s, background-clip 0.2s;
+}
+header .austria-guide-link:hover {
+    background-image: linear-gradient(to right, #ed2939 0 33.33%, #ffffff 33.33% 66.66%, #ed2939 66.66% 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+/* Синяя полоска под активной страницей в верхней панели */
+header .nav-link { position: relative; }
+header .nav-link { display: inline-block; }
+header .nav-link.nav-link--active {
+    color: #f1f5f9;
+    position: relative;
+    /* Постоянное подчёркивание активной ссылки */
+    background-image: linear-gradient(#3b82f6, #3b82f6);
+    background-repeat: no-repeat;
+    background-position: left 0.5rem bottom 0;
+    background-size: calc(100% - 1rem) 2px;
+}
+
+/* Подчёркивание для активной ссылки - поверх синего фона при hover */
+/* При hover активной ссылки — линия становится белой поверх синего фона */
+header .nav-link.nav-link--active:hover {
+    background-image: linear-gradient(#3b82f6, #3b82f6);
+    background-repeat: no-repeat;
+    background-position: left 0.5rem bottom 0;
+    background-size: calc(100% - 1rem) 2px;
+}
+
+/* Отключаем второе подчёркивание из global .nav-link--active::after внутри шапки */
+header .nav-link.nav-link--active::after { content: none; }
+

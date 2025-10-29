@@ -1,0 +1,30 @@
+/* Главный экран (Hero) */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('https://www.atorus.ru/sites/default/files/styles/head_carousel/public/2021-09/20308f.jpg.webp?itok=jNz4Qgod');
+    background-size: cover;
+    background-position: center bottom;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+@media (min-width: 768px) {
+    .hero-title { font-size: 4.5rem; }
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+@media (min-width: 768px) {
+    .hero-subtitle { font-size: 1.5rem; }
+}
+

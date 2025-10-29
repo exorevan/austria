@@ -1,0 +1,20 @@
+/* Переменные для цветовой схемы (CSS Custom Properties) */
+::root {
+    --primary-color: #3b82f6;
+    --secondary-color: #10b981;
+    --background-color: #f8fafc;
+    --text-dark: #1e293b;
+    --dot-inactive-bg: rgba(100,116,139,0.4);
+    --dot-active-bg: #3b82f6;
+    --text-light: #64748b;
+}
+
+/* Переопределение переменных для темной темы */
+.dark {
+    --background-color: #0f172a;
+    --text-dark: #e2e8f0;
+    --dot-inactive-bg: rgba(148,163,184,0.4);
+    --dot-active-bg: #3b82f6;
+    --text-light: #94a3b8;
+}
+

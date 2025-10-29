@@ -1,0 +1,29 @@
+/* Плавное затухание для размытого фона шапки (capability check оставим в header.css) */
+
+/* Отступы для секций и разделитель между ними */
+section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+section + section {
+    padding-top: 6rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Плавный переход для элементов, меняющих цвет при смене темы */
+header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, strong, h3, h4,
+.bg-slate-50, .coffee-slider-container, .border-slate-200 {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Светлая тема утилиты */
+.bg-slate-50, .coffee-slider-container { background-color: #f8fafc; }
+.border-slate-200 { border-color: #e2e8f0; }
+
+/* Подвал */
+.main-footer {
+    background-color: #1f2937;
+    color: #cbd5e1;
+    margin-top: 6rem;
+}
+

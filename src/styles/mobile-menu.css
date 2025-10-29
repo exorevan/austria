@@ -1,0 +1,23 @@
+/* Боковое мобильное меню: ссылки */
+.mobile-nav-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #334155;
+    transition: all 200ms ease;
+}
+.dark .mobile-nav-link { color: #e2e8f0; }
+
+.mobile-nav-link:hover { background-color: #f1f5f9; padding-left: 1.5rem; }
+.dark .mobile-nav-link:hover { background-color: #1f2937; }
+
+.mobile-nav-link--active { background-color: #2563eb; color: #fff; padding-left: 1.5rem; }
+.dark .mobile-nav-link--active { background-color: #3b82f6; }
+

@@ -1,0 +1,22 @@
+/* Переопределения для темной темы */
+.dark body {
+    background-color: var(--background-color);
+    color: var(--text-dark);
+}
+
+.dark .card { background-color: #1f2937; border-color: #334155; }
+.dark .card h3, .dark .card h4 { color: #e6edf3; }
+.dark .card p, .dark .card li { color: #cbd5e1; }
+.dark strong { color: #e6edf3; }
+.dark .section-title { color: var(--text-dark); }
+.dark .section-subtitle { color: var(--text-light); }
+.dark .text-slate-700 { color: #e2e8f0; }
+.dark .text-slate-600 { color: #cbd5e1; }
+.dark .text-slate-500 { color: #94a3b8; }
+.dark .text-slate-800 { color: #e5e7eb; }
+.dark .border-slate-200 { border-color: #334155; }
+.dark .bg-slate-50 { background-color: #0b1324; }
+.dark .coffee-surface { background-color: #0b1324; border-color: #334155; }
+.dark .card,
+.dark .modal-content { background-color: #111827; }
+

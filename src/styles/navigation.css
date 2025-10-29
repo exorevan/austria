@@ -1,0 +1,43 @@
+/* Ссылки в основной навигации */
+.nav-link {
+    padding: 0.25rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-radius: 99px;
+    border: 1px solid transparent;
+    transition-property: color, background-color, border;
+    transition-duration: 300ms;
+}
+
+.nav-link:hover {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: 1px solid transparent;
+}
+
+.nav-link--active {
+    color: var(--primary-color);
+    position: relative;
+    border: 1px solid transparent;
+    background-color: transparent;
+    /* Постоянное подчёркивание активной вкладки */
+    background-image: linear-gradient(var(--primary-color), var(--primary-color));
+    background-repeat: no-repeat;
+    background-position: left 0.5rem bottom 0;
+    background-size: calc(100% - 1rem) 2px;
+}
+.nav-link--active:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+.nav-link--active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0.75rem;
+    right: 0.75rem;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
