@@ -4,7 +4,9 @@
 
 /* Подвал сайта */
 .main-footer {
-    @apply bg-slate-800 text-slate-300 mt-24;
+    background-color: #1f2937; /* slate-800 */
+    color: #cbd5e1; /* slate-300 */
+    margin-top: 6rem; /* mt-24 */
 }
 
 
@@ -232,6 +234,9 @@
     height: 2px;
     background-color: var(--primary-color);
 }
+/* В шапке сайта делаем цвет ссылок одинаковым для светлой и темной темы */
+header .nav-link { color: #f1f5f9; }
+header .nav-link:hover { color: #f1f5f9; border-color: rgba(241,245,249,0.3); }
 /* Отступы для секций и разделитель между ними */
 section {
     padding-top: 4rem; /* 64px */
@@ -350,20 +355,33 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 
 /* Боковое мобильное меню */
 .mobile-nav-link {
-    /* Делаем шрифт крупнее и жирнее, увеличиваем отступы */
-    @apply block w-full text-left px-4 py-3 rounded-lg text-xl font-bold text-slate-700 dark:text-slate-200;
-    @apply transition-all duration-200;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem;
+    padding-top: 0.75rem; /* py-3 */
+    padding-bottom: 0.75rem;
+    border-radius: 0.5rem; /* rounded-lg */
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    color: #334155; /* text-slate-700 */
+    transition: all 200ms ease;
 }
+.dark .mobile-nav-link { color: #e2e8f0; /* dark:text-slate-200 */ }
 
 .mobile-nav-link:hover {
-    /* Добавляем сдвиг при наведении для лучшего отклика */
-    @apply bg-slate-100 dark:bg-slate-800 pl-6;
+    background-color: #f1f5f9; /* slate-100 */
+    padding-left: 1.5rem; /* pl-6 */
 }
+.dark .mobile-nav-link:hover { background-color: #1f2937; /* dark:bg-slate-800 */ }
 
 .mobile-nav-link--active {
-    /* Более выразительный стиль для активной ссылки */
-    @apply bg-blue-600 text-white dark:bg-blue-500 pl-6;
+    background-color: #2563eb; /* bg-blue-600 */
+    color: #fff;
+    padding-left: 1.5rem; /* pl-6 */
 }
+.dark .mobile-nav-link--active { background-color: #3b82f6; /* dark:bg-blue-500 */ }
 
 /* Кастомный скроллбар для бокового меню */
 .custom-scrollbar::-webkit-scrollbar {
@@ -394,7 +412,11 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 
 /* Общий контейнер для точек-индикаторов слайдера */
 .slider-dots {
-    @apply flex justify-center items-center gap-2 mt-4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* gap-2 */
+    margin-top: 1rem; /* mt-4 */
 }
 
 /* Слайдер парков: ускорение анимации */
@@ -450,10 +472,22 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 
 /* Кнопки навигации для ManualSlider */
 .slider-nav-button {
-    @apply px-4 py-2 rounded-full border bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold border-slate-300;
-    @apply dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100 dark:border-slate-600;
-    @apply transition-colors;
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem;
+    padding-top: 0.5rem; /* py-2 */
+    padding-bottom: 0.5rem;
+    border-radius: 9999px; /* rounded-full */
+    border-width: 1px;
+    border-style: solid;
+    border-color: #cbd5e1; /* border-slate-300 */
+    background-color: #e2e8f0; /* bg-slate-200 */
+    color: #1f2937; /* text-slate-800 */
+    font-weight: 600; /* font-semibold */
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
 }
+.slider-nav-button:hover { background-color: #cbd5e1; /* hover:bg-slate-300 */ }
+.dark .slider-nav-button { background-color: #334155; /* dark:bg-slate-700 */ color: #f1f5f9; border-color: #475569; /* dark:border-slate-600 */ }
+.dark .slider-nav-button:hover { background-color: #475569; /* dark:hover:bg-slate-600 */ }
 /* ==========================================================================
    Специфичные компоненты
    ========================================================================== */
@@ -472,7 +506,7 @@ header, .nav-link, .header-title, .section-title, .section-subtitle, p, li, stro
 /* Стиль для изображений внутри слайдеров */
 .slider-image {
     /* Добавляем скругление углов */
-    @apply rounded-lg; /* 8px */
+    border-radius: 0.5rem; /* 8px */
     /* Гарантируем, что изображение не выйдет за пределы скругленных углов */
     overflow: hidden;
 }

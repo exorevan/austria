@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import MobileMenu from './components/SideMenu';
 import Footer from './components/Footer';

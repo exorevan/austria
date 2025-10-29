@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Chart,
   BarController, DoughnutController, LineController,
@@ -35,12 +35,23 @@ const ChartWrapper = ({ type, data, options, chartId, colorize }) => {
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
 
+  const [isDarkMode, setIsDarkMode] = useState(() => document.documentElement.classList.contains('dark'));
+
+  // Следим за сменой темы через изменение класса на корневом элементе
+  useEffect(() => {
+    const rootEl = document.documentElement;
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(rootEl.classList.contains('dark'));
+    });
+    observer.observe(rootEl, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     // Определяем, активна ли темная тема
-    const isDarkMode = document.documentElement.classList.contains('dark');
     const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
     const textColor = isDarkMode ? '#e2e8f0' : '#1e293b';
 
@@ -66,7 +77,7 @@ const ChartWrapper = ({ type, data, options, chartId, colorize }) => {
       options: {
         ...options,
         // Динамически переопределяем цвета для всех осей, которые есть в графике
-        scales: Object.keys(options.scales || {}).reduce((acc, key) => {
+        scales: Object.keys((options && options.scales) || {}).reduce((acc, key) => {
           acc[key] = {
             ...options.scales[key],
             grid: {
@@ -81,8 +92,8 @@ const ChartWrapper = ({ type, data, options, chartId, colorize }) => {
           return acc;
         }, {}),
         plugins: {
-          ...options.plugins,
-          legend: { ...options.plugins?.legend, labels: { ...options.plugins?.legend?.labels, color: textColor } },
+          ...options?.plugins,
+          legend: { ...options?.plugins?.legend, labels: { ...options?.plugins?.legend?.labels, color: textColor } },
         },
       },
     });
@@ -95,7 +106,7 @@ const ChartWrapper = ({ type, data, options, chartId, colorize }) => {
       }
     };
     // Зависимости: перерисовываем при смене данных, опций или темы
-  }, [document.documentElement.classList.contains('dark')]);
+  }, [type, data, options, colorize, isDarkMode]);
 
   return <canvas ref={canvasRef} id={chartId}></canvas>;
 };

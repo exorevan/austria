@@ -49,7 +49,16 @@ const SideMenu = ({ isOpen, onClose }) => {
                     </button>
                 </div>
                 <nav className="p-4 flex flex-col items-stretch space-y-2">
-                    {navLinksData.map((link) => <NavLink key={link.href} to={link.href} onClick={onClose} className="mobile-nav-link">{link.text}</NavLink>)}
+                    {navLinksData.map((link) => (
+                        <NavLink
+                            key={link.href}
+                            to={link.href}
+                            onClick={onClose}
+                            className={({ isActive }) => `mobile-nav-link ${isActive ? 'mobile-nav-link--active' : ''}`}
+                        >
+                            {link.text}
+                        </NavLink>
+                    ))}
                 </nav>
             </div>
         </>
